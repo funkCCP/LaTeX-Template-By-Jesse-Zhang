@@ -1,0 +1,67 @@
+% ==========================================
+% Compiled by XeLaTeX/LuaLaTex. This is a sample main.tex for testing and running.
+% ==========================================
+
+\documentclass[12pt]{article}
+\usepackage{jesse} 
+
+\begin{document}
+
+% ==========================================
+% 首頁與裝飾設計
+% ==========================================
+
+\begin{titlepage}
+    \begin{tikzpicture}[remember picture,overlay]
+        \draw[GlacierBlue, line width=2pt] (current page.north west) ++(2cm,-1.5cm) -- ++(17.5cm,0);
+        \draw[GlacierBlue!50, line width=0.6pt] (current page.north west) ++(2cm,-1.9cm) -- ++(17.5cm,0);
+    \end{tikzpicture}
+    
+    \vspace*{3em}
+    \begin{center}
+        {\Huge \textbf{Advanced Mathematics}\\[1cm]}
+        {\LARGE Geometry and Algebra\\[1cm]}
+        \textcolor{GlacierBlue}{\rule{0.5\textwidth}{1pt}} \\[2.5cm]
+        {\Huge \calli{Jesse Zhang}} \\[8cm]
+        {\LARGE \textbf{2026 Edition}}\\[1cm]
+    \end{center}
+    
+    \vfill
+    \begin{tikzpicture}[remember picture,overlay]
+        \fill[GlacierBlue!20] (current page.south west) ++(2cm,2cm) rectangle ++(17.5cm,0.4cm);
+        \draw[GlacierBlue!70!black, line width=1pt] (current page.south west) ++(2cm,2.2cm) -- ++(17.5cm,0);
+    \end{tikzpicture}
+\end{titlepage}
+
+\tableofcontents
+\newpage
+
+\section{Testing the Box System}
+\subsection{Core Mathematics}
+
+% [測試一：正常標題，不會吞字]
+\begin{theorem}[Pythagorean Theorem]
+In a right-angled triangle, the square of the hypotenuse is equal to the sum of the squares of the other two sides.
+\end{theorem}
+
+% [測試二：完全沒有標題，直接寫正文]
+\begin{theorem}
+This theorem has no title, and the text starts smoothly without needing filler characters.
+\end{theorem}
+
+% [測試三：加星號取消編號]
+\begin{lemma*}[Euclid's Lemma]
+This lemma will not have a number, but still retains the beautiful design.
+\end{lemma*}
+
+\subsection{Side Quotes and Remarks}
+
+\begin{remark}[Key Observation]
+The left border acts as an elegant anchor for text you want to highlight, like tips or remarks.
+\end{remark}
+
+\begin{warning*} % 無編號的警告框
+Watch out for division by zero!
+\end{warning*}
+
+\end{document}
