@@ -266,6 +266,18 @@
   title=\bfseries #1, fonttitle=\bfseries\color{white}
 }
 
+% --- \paragraph 樣式設定 (深藍色段落符號 - 強制顯示版) ---
+\titleformat{\paragraph}[hang]
+  {\normalfont\bfseries\color{blue}}    % 設定標題文字為粗體
+  {}                              % [關鍵修改] 這裡留空，因為預設 paragraph 沒有編號
+  {0pt}                           % 標籤與標題的距離設為 0
+  {\textcolor{blue}{\P}\hspace{0.5em}} % [關鍵修改] 將符號移到這裡強制顯示，並加上間距！
+
+\titlespacing*{\paragraph}
+  {0pt}                           
+  {2ex plus 1ex minus .2ex}       
+  {1ex plus .2ex}                 
+
 % --- 10. 自訂表格環境修復 ---
 \NewTColorBox{mytable}{ o }{
   enhanced, breakable,
@@ -275,3 +287,13 @@
   before upper={\renewcommand{\arraystretch}{1.3}\setlength{\tabcolsep}{6pt}},
   title={\IfValueT{#1}{#1}}
 }
+
+% ==========================================
+% 11. 超連結 (必須放在套件最後端)
+% ==========================================
+\RequirePackage{hyperref}
+\hypersetup{colorlinks=true, linkcolor=CharlesBlue, urlcolor=CharlesBlue}
+
+\endinput
+
+
