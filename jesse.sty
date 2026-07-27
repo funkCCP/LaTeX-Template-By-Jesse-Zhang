@@ -158,7 +158,7 @@
 \renewcommand{\cftsecpagefont}{\bfseries}
 
 % ==========================================
-% 9. Box 系統引擎 
+% 9. Box 系統引擎 （整個Template的靈魂！）
 % ==========================================
 \RequirePackage[most]{tcolorbox}
 \RequirePackage{xparse}
@@ -240,7 +240,7 @@
 }
 
 
-% --- 批量註冊 Box ---
+% --- 批量註冊 Box （小技巧可以學學）---
 \NewJesseFancyBox{theorem}{UltramarineSoft}{Theorem}
 \NewJesseFancyBox{lemma}{BrightAqua}{Lemma}
 \NewJesseFancyBox{formula}{GlacierBlue}{Formula}
@@ -266,7 +266,7 @@
   title=\bfseries #1, fonttitle=\bfseries\color{white}
 }
 
-% --- \paragraph 樣式設定 (深藍色段落符號 - 強制顯示版) ---
+% --- "\paragraph{}" 樣式設定 (藍色段落符號文字，我覺得這樣好看) ---
 \titleformat{\paragraph}[hang]
   {\normalfont\bfseries\color{blue}}    % 設定標題文字為粗體
   {}                              % [關鍵修改] 這裡留空，因為預設 paragraph 沒有編號
