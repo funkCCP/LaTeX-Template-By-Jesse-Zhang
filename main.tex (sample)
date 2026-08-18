@@ -40,7 +40,8 @@
 \subsection{Core Mathematics}
 
 \begin{example}
-    
+    這是一個漂亮的例子。
+    \[\frac{\partial}{\partial t}\left[\mathrm{e}^{\int_{0}^{t}A(\tau)\,\mathrm{d}\tau}\left(\int_{0}^{t}\mathrm{e}^{\int_{0}^{s}A(\tau)\,\mathrm{d}\tau}B(s)\,\mathrm{d}s+C\right)\right]=B(t)-A(t)y(t).\]   
 \end{example}
 % [測試一：正常標題，不會吞字]
 \begin{theorem}[Pythagorean Theorem]
