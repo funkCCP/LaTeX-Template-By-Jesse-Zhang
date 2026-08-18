@@ -7,57 +7,78 @@
 \PassOptionsToPackage{dvipsnames,table}{xcolor}
 
 % ==========================================
-% 1. 引擎與編碼設定 (雲端零 Error 完美中文版)
+% 1. 引擎與編碼設定
 % ==========================================
 \RequirePackage{iftex}
-\ifxetex
-  \RequirePackage{fontspec}
-  \RequirePackage{xeCJK} % 載入中文排版核心套件
 
-  % --- 英文自訂字體保留 ---
+\ifxetex
+
+  \RequirePackage{fontspec}
+  \RequirePackage{xeCJK}
+
+  % ------------------------------------------
+  % 英文字體
+  % ------------------------------------------
   \newfontfamily\gothic{TeX Gyre Termes}
   \newfontfamily\calli{Great Vibes}
 
-  % --- 中文斷行設定 (完美處理邊界與標點符號) ---
+  % ------------------------------------------
+  % 中文斷行
+  % ------------------------------------------
   \XeTeXlinebreaklocale "zh"
   \XeTeXlinebreakskip = 0pt plus 1pt
 
-  % --- 全域中文字體映射 (使用雲端內建標準字體 Fandol) ---
-  % FandolSong-Regular 完美替代「新細明體/宋體」 (預設有襯線)
-  % FandolHei-Regular 完美替代「微軟正黑體」 (\textbf 自動切換)
-  % FandolKai-Regular 完美替代「標楷體」 (\textit 自動切換)
-  \setCJKmainfont{FandolSong-Regular}[
-    AutoFakeBold=false,
-    AutoFakeSlant=false,
-    BoldFont=FandolHei-Regular,
+  % ------------------------------------------
+  % 中文字體
+  %
+  % 正體中文正文 → Noto Serif CJK TC
+  % 中文斜體/Italic → FandolKai（真正楷體）
+  % 中文粗體 → Noto Serif CJK TC + FakeBold
+  % ------------------------------------------
+  \setCJKmainfont{Noto Serif CJK TC}[
+    AutoFakeBold=true,
     ItalicFont=FandolKai-Regular
   ]
 
-  % --- 預設無襯線與等寬字體 ---
-  \setCJKsansfont{FandolHei-Regular}
-  \setCJKmonofont{FandolKai-Regular}
+  % ------------------------------------------
+  % 無襯線 / 等寬
+  % ------------------------------------------
+  \setCJKsansfont{Noto Sans CJK TC}
+  \setCJKmonofont{Noto Sans Mono CJK TC}
 
-  % --- 保留你的自訂指令 (安全映射到雲端字體) ---
-  % 確保你在正文中輸入 \Kai, \Hei, \NewMing 時完全不會報錯
-  \newCJKfontfamily\Kai{FandolKai-Regular}       
-  \newCJKfontfamily\Hei{FandolHei-Regular}   
-  \newCJKfontfamily\NewMing{FandolSong-Regular} 
+  % ------------------------------------------
+  % 自訂中文字體命令
+  % ------------------------------------------
+  \newCJKfontfamily\Kai{FandolKai-Regular}
+  \newCJKfontfamily\Hei{Noto Sans CJK TC}
+  \newCJKfontfamily\NewMing{Noto Serif CJK TC}
 
-  % --- 讓數學公式內 (\text{}) 也能正常顯示中文 ---
+  % ------------------------------------------
+  % 數學公式中的中文
+  % ------------------------------------------
   \xeCJKsetup{CJKmath=true}
 
 \else
+
   \ifluatex
+
     \RequirePackage{fontspec}
+
     \newfontfamily\gothic{TeX Gyre Termes}
     \newfontfamily\calli{Great Vibes}
+
   \else
+
     \RequirePackage[utf8]{inputenc}
     \RequirePackage[T1]{fontenc}
+
     \newcommand{\gothic}{\sffamily}
     \newcommand{\calli}{\rmfamily\itshape}
+
   \fi
+
 \fi
+
 
 
 % ==========================================
@@ -339,5 +360,7 @@
 \hypersetup{colorlinks=true, linkcolor=CharlesBlue, urlcolor=CharlesBlue}
 
 \endinput
+
+
 
 
