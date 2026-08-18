@@ -7,13 +7,45 @@
 \PassOptionsToPackage{dvipsnames,table}{xcolor}
 
 % ==========================================
-% 1. 引擎與編碼設定
+% 1. 引擎與編碼設定 (雲端零 Error 完美中文版)
 % ==========================================
 \RequirePackage{iftex}
 \ifxetex
   \RequirePackage{fontspec}
+  \RequirePackage{xeCJK} % 載入中文排版核心套件
+
+  % --- 英文自訂字體保留 ---
   \newfontfamily\gothic{TeX Gyre Termes}
   \newfontfamily\calli{Great Vibes}
+
+  % --- 中文斷行設定 (完美處理邊界與標點符號) ---
+  \XeTeXlinebreaklocale "zh"
+  \XeTeXlinebreakskip = 0pt plus 1pt
+
+  % --- 全域中文字體映射 (使用雲端內建標準字體 Fandol) ---
+  % FandolSong-Regular 完美替代「新細明體/宋體」 (預設有襯線)
+  % FandolHei-Regular 完美替代「微軟正黑體」 (\textbf 自動切換)
+  % FandolKai-Regular 完美替代「標楷體」 (\textit 自動切換)
+  \setCJKmainfont{FandolSong-Regular}[
+    AutoFakeBold=false,
+    AutoFakeSlant=false,
+    BoldFont=FandolHei-Regular,
+    ItalicFont=FandolKai-Regular
+  ]
+
+  % --- 預設無襯線與等寬字體 ---
+  \setCJKsansfont{FandolHei-Regular}
+  \setCJKmonofont{FandolKai-Regular}
+
+  % --- 保留你的自訂指令 (安全映射到雲端字體) ---
+  % 確保你在正文中輸入 \Kai, \Hei, \NewMing 時完全不會報錯
+  \newCJKfontfamily\Kai{FandolKai-Regular}       
+  \newCJKfontfamily\Hei{FandolHei-Regular}   
+  \newCJKfontfamily\NewMing{FandolSong-Regular} 
+
+  % --- 讓數學公式內 (\text{}) 也能正常顯示中文 ---
+  \xeCJKsetup{CJKmath=true}
+
 \else
   \ifluatex
     \RequirePackage{fontspec}
@@ -27,16 +59,18 @@
   \fi
 \fi
 
+
 % ==========================================
 % 2. 基礎套件與版面設定
 % ==========================================
-\RequirePackage[margin=1in]{geometry}
+\RequirePackage[margin=1.1in]{geometry}
 \RequirePackage{setspace}
-\setstretch{1.3}
+\setstretch{1.2}
 \RequirePackage{multicol}
 \RequirePackage{enumitem}
 \RequirePackage{float}
 \RequirePackage{xcolor}
+\RequirePackage{titlesec}
 
 % ==========================================
 % 3. 數學套件與指令
@@ -49,6 +83,7 @@
 \newcommand{\Q}{\mathbb{Q}}
 \newcommand{\Z}{\mathbb{Z}}
 \newcommand{\C}{\mathbb{C}}
+\newcommand{\dd}{\mathrm{d}}
 
 % ==========================================
 % 4. 自訂色盤
@@ -94,6 +129,7 @@
 \definecolor{SoftGold}{HTML}{FCF8F1}
 \definecolor{TextGray}{HTML}{444444}
 \definecolor{AccentTeal}{HTML}{2A9D8F}
+\definecolor{darkgold}{HTML}{B8860B}
 \definecolor{qqzzff}{rgb}{0,0.6,1}
 \definecolor{ffqqtt}{rgb}{1,0,0.2}
 \newcommand{\highlight}[1]{\textcolor{CharlesBlue}{#1}}
@@ -137,14 +173,14 @@
 \RequirePackage{tabularx, booktabs, array, colortbl, diagbox}
 \RequirePackage[normalem]{ulem} 
 \RequirePackage{pifont}
-
+\RequirePackage{adforn}
 % ==========================================
 % 8. 頁首頁尾與標題排版 
 % ==========================================
 \RequirePackage{fancyhdr}
 \pagestyle{fancy}
 \setlength{\headheight}{15pt} % <--- 修復: 增加 header 高度，解決 \headheight is too small 的警告
-\fancyhead[L]{\calli{Mathematics}}
+\fancyhead[L]{\calli{\nouppercase{\leftmark}}}
 \fancyhead[R]{\calli{Jesse Zhang}}
 \renewcommand{\headrulewidth}{0.5pt}
 \renewcommand{\headrule}{\color{CharlesBlue}\hrule width\headwidth height\headrulewidth \vskip-\headrulewidth}
@@ -158,7 +194,7 @@
 \renewcommand{\cftsecpagefont}{\bfseries}
 
 % ==========================================
-% 9. Box 系統引擎 （整個Template的靈魂！）
+% 9. Box 系統引擎 
 % ==========================================
 \RequirePackage[most]{tcolorbox}
 \RequirePackage{xparse}
@@ -240,23 +276,21 @@
 }
 
 
-% --- 批量註冊 Box （小技巧可以學學）---
+% --- 批量註冊 Box ---
 \NewJesseFancyBox{theorem}{UltramarineSoft}{Theorem}
 \NewJesseFancyBox{lemma}{BrightAqua}{Lemma}
 \NewJesseFancyBox{formula}{GlacierBlue}{Formula}
 \NewJesseFancyBox{definition}{Rose}{Definition}
 \NewJesseFancyBox{problem}{Champagne}{Problem}
 \NewJesseFancyBox{corollary}{pulseOrange}{Corollary}
-\NewJesseFancyBox{proof}{Lavender}{Proof}
 \NewJesseFancyBox{axiom}{Coral}{Axiom}
-\NewJesseFancyBox{solution}{accent1}{Solution}
 \NewJesseFancyBox{proposition}{primary}{Proposition}
-\NewJesseFancyBox{example}{FreshGreen}{Example}
+\NewJesseFancyBox{example}{green}{Example}
 \NewJesseFancyBox{exercise}{WarmGold}{Exercise}
 
-\NewJesseSideBox{remark}{FreshGreen}{Remark}
+\NewJesseSideBox{remark}{Green}{Remark}
 \NewJesseSideBox{claim}{GlacierBlue}{Claim}
-\NewJesseSideBox{note}{SoftBlue}{Note}
+\NewJesseSideBox{note}{Fuchsia}{Note}
 \NewJesseSideBox{warning}{errRed}{Warning}
 
 % --- 特殊 Box: Sample ---
@@ -266,17 +300,27 @@
   title=\bfseries #1, fonttitle=\bfseries\color{white}
 }
 
-% --- "\paragraph{}" 樣式設定 (藍色段落符號文字，這是我後來加的，因為我覺得這樣好看：）所以Demo的PDF是老版本的。）---
+\newenvironment{proof}
+  {\par\medskip\noindent\textit{Proof.}\enspace}
+  {\hfill\(\square\)\par\medskip}
+
+\newenvironment{solution}
+  {\par\medskip\noindent\textit{Solution.}\enspace}
+  {\par\medskip}
+
+% --- \paragraph 樣式設定 (深藍色段落符號 - 強制顯示版) ---
 \titleformat{\paragraph}[hang]
-  {\normalfont\bfseries\color{blue}}    % 設定標題文字為粗體
+  {\normalfont\bfseries\color{darkgold}}    % 設定標題文字為粗體
   {}                              % [關鍵修改] 這裡留空，因為預設 paragraph 沒有編號
   {0pt}                           % 標籤與標題的距離設為 0
-  {\textcolor{blue}{\P}\hspace{0.5em}} % [關鍵修改] 將符號移到這裡強制顯示，並加上間距！
+  {\textcolor{darkgold}{\P}\hspace{0.5em}} % [關鍵修改] 將符號移到這裡強制顯示，並加上間距！
 
 \titlespacing*{\paragraph}
   {0pt}                           
   {2ex plus 1ex minus .2ex}       
   {1ex plus .2ex}                 
+            
+
 
 % --- 10. 自訂表格環境修復 ---
 \NewTColorBox{mytable}{ o }{
