@@ -2,7 +2,7 @@
 % Compiled by XeLaTeX/LuaLaTex. This is a sample main.tex for testing and running.
 % ================================================================================
 
-\documentclass[12pt]{article}
+\documentclass[11pt]{article}
 \usepackage{jesse} 
 
 \begin{document}
@@ -39,6 +39,9 @@
 \section{Testing the Box System}
 \subsection{Core Mathematics}
 
+\begin{example}
+    
+\end{example}
 % [測試一：正常標題，不會吞字]
 \begin{theorem}[Pythagorean Theorem]
 In a right-angled triangle, the square of the hypotenuse is equal to the sum of the squares of the other two sides.
@@ -54,6 +57,10 @@ This theorem has no title, and the text starts smoothly without needing filler c
 This lemma will not have a number, but still retains the beautiful design.
 \end{lemma*}
 
+\begin{proof}
+    We prove ...... $\frac{\dd}{\dd x}$.
+\end{proof}
+
 \subsection{Side Quotes and Remarks}
 
 \begin{remark}[Key Observation]
@@ -63,5 +70,13 @@ The left border acts as an elegant anchor for text you want to highlight, like t
 \begin{warning*} % 無編號的警告框
 Watch out for division by zero!
 \end{warning*}
+
+\paragraph{Hello!}
+用\textit{中文}也完全\textbf{無障礙}！！！以後爸爸媽媽再也不用擔心我用 \LaTeX 沒法用中文了！！！
+
+
+
+
+
 
 \end{document}
