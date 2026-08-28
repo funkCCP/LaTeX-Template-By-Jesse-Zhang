@@ -19,8 +19,8 @@
     
     \vspace*{3em}
     \begin{center}
-        {\Huge \textbf{Advanced Mathematics}\\[1cm]}
-        {\LARGE Geometry and Algebra\\[1cm]}
+        {\Huge \textbf{Jesse's Style Template of  \LaTeX}\\[1cm]}
+        {\LARGE Some Testing Scratch Works\\[1cm]}
         \textcolor{GlacierBlue}{\rule{0.5\textwidth}{1pt}} \\[2.5cm]
         {\Huge \calli{Jesse Zhang}} \\[8cm]
         {\LARGE \textbf{2026 Edition}}\\[1cm]
@@ -41,8 +41,9 @@
 
 \begin{example}
     這是一個漂亮的例子。
-    \[\frac{\partial}{\partial t}\left[\mathrm{e}^{\int_{0}^{t}A(\tau)\,\mathrm{d}\tau}\left(\int_{0}^{t}\mathrm{e}^{\int_{0}^{s}A(\tau)\,\mathrm{d}\tau}B(s)\,\mathrm{d}s+C\right)\right]=B(t)-A(t)y(t).\]   
+    \[\frac{\partial}{\partial t}\left[\mathrm{e}^{\int_{0}^{t}A(\tau)\,\mathrm{d}\tau}\left(\int_{0}^{t}\mathrm{e}^{\int_{0}^{s}A(\tau)\,\mathrm{d}\tau}B(s)\,\mathrm{d}s+C\right)\right]=B(t)-A(t)y(t).\]
 \end{example}
+
 % [測試一：正常標題，不會吞字]
 \begin{theorem}[Pythagorean Theorem]
 In a right-angled triangle, the square of the hypotenuse is equal to the sum of the squares of the other two sides.
@@ -73,7 +74,22 @@ Watch out for division by zero!
 \end{warning*}
 
 \paragraph{Hello!}
-用\textit{中文}也完全\textbf{無障礙}！！！以後爸爸媽媽再也不用擔心我用 \LaTeX 沒法用中文了！！！
+使用\textit{中文}（此\LaTeX 模板同時兼容\textbf{繁體}和\textbf{简体}！），在不同場景下進行字體風格切換，也完全\textbf{無障礙}！！！以後爸爸媽媽再也不用擔心我用 \LaTeX 沒法用中文了！！！
+
+\newpage
+\section{Another example}
+\subsection{A Formula（來個二壁公式）}
+\begin{formula}
+We have（我們有） $$F=ma.$$ Or we can write （或者我們可以寫成）
+    $$\sum_{i=1}^{n}\Vec{F}=m\Vec{a}.$$
+\end{formula}
+
+\medskip
+\begin{warning}
+    \textcolor{red}{\ding{54}}\quad\textbf{Incorrect Thinking（錯誤的思想）:}
+    $$\text{Net Force}=\text{Mass}\times\text{acceleration}.$$
+    \textcolor{green}{\ding{52}}\quad\textbf{Correct Thinking（正確的解讀）:}$$\text{Fuck}=\text{Money}\times\text{Appearance}.$$
+\end{warning}
 
 
 
@@ -81,3 +97,4 @@ Watch out for division by zero!
 
 
 \end{document}
+
