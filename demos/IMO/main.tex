@@ -1,10 +1,3 @@
-% ==========================================
-% IMO 2026 Solution Notes - LaTeX - main.tex 
-% Compiled by XeLaTeX
-% Warning! Please do NOT direct copy and paste this code, because this is a older version demo. NOT for the new version.
-% 請不要直接複製這段代碼並用於最新模板當中，因為這段代碼已經不適用於最新的模板包了。我後續會替換並展出一個新的Demo。
-% ==========================================
-
 \documentclass[11pt]{article}
 \usepackage{jesse} 
 
@@ -25,7 +18,7 @@
         {\Huge \textbf{International Mathematical Olymiad}\\[1.5cm]}
         {\LARGE \textbf{Solution Notes}\\[1.5cm]}
         \textcolor{GlacierBlue}{\rule{0.5\textwidth}{1pt}} \\[1.75cm]
-        {\Huge \calli{Jesse Zhang}} \\[10cm]
+        {\Huge \calli{Jesse Zhang}} \\[9cm]
         {\LARGE \textbf{2026 Edition}}\\[1cm]
     \end{center}
     
@@ -35,8 +28,14 @@
         \draw[GlacierBlue!70!black, line width=1pt] (current page.south west) ++(2cm,2.2cm) -- ++(17.5cm,0);
     \end{tikzpicture}
 \end{titlepage}
-
+\newpage
+\thispagestyle{empty}
+\null
+\newpage
 \tableofcontents
+\newpage
+\thispagestyle{empty}
+\null
 \newpage
 \section{Solutions to Day I}
 \subsection{International Mathematical Olympiad/Problem 1}
@@ -59,39 +58,38 @@ Let $g = \gcd(m,n)$.
     The 2025 elements in the matrix have the property that they will never degenerate to a case where all elements are 1.
 \end{lemma}
 \begin{proof}
-    Suppose two entries $m,n > 1$ are inserted. Then, they are replaced by $g$ and $\frac{mn}{g^2}$. Assume that both replacements degenerate to 1. Then $g = 1$ from which $mn$ is the remaining. But $m,n > 1$ hence this is impossible. So at least one element after this process is greater than 1.\hfill$\square$
+    Suppose two entries $m,n > 1$ are inserted. Then, they are replaced by $g$ and $\frac{mn}{g^2}$. Assume that both replacements degenerate to 1. Then $g = 1$ from which $mn$ is the remaining. But $m,n > 1$ hence this is impossible. So at least one element after this process is greater than 1.
 \end{proof}
 \begin{lemma}
     Suppose $\mathcal{B}$ contains $k \geq 1$ elements greater than 1. If $e > 1$ is the removed element, then adding back $e$ and performing the same moveset as above degenerates the new blackboard to a case where exactly one element is greater than 1.
 \end{lemma}
 \begin{proof}
-    Let $a,b > 1$ be two numbers in $k$. Consider their prime factorizations. For any prime $p$ let $v_p(a)$ and $v_p(b)$ be the power of $p$ in $a,b$ respectively. The moveset replaces the values with $\min(v_p(a),v_p(b))$ and $|v_p(a)-v_p(b)|$. However, this is just the Euclidean algorithm on the exponents of any given prime in $a,b$. The algorithm always ends with a nonzero value and one zero value for $v_p(a,b)$. Hence, one of the numbers is greater than one and the other is one itself. Therefore, exactly one number exists that is greater than 1.\hfill$\square$
+    Let $a,b > 1$ be two numbers in $k$. Consider their prime factorizations. For any prime $p$ let $v_p(a)$ and $v_p(b)$ be the power of $p$ in $a,b$ respectively. The moveset replaces the values with $\min(v_p(a),v_p(b))$ and $|v_p(a)-v_p(b)|$. However, this is just the Euclidean algorithm on the exponents of any given prime in $a,b$. The algorithm always ends with a nonzero value and one zero value for $v_p(a,b)$. Hence, one of the numbers is greater than one and the other is one itself. Therefore, exactly one number exists that is greater than 1.
 \end{proof}
-\paragraph{For Part (a):} \textcolor{BrightAqua}{\textbf{Lemma 1.1.2}} proves the result. $\square$
-
-\medskip
-\noindent
-We now prove that $e$ is invariant and no matter what we choose the value of $e$ to be in the original 2026 matrix, the result always holds.
+\paragraph{For Part (a):} \textcolor{BrightAqua}{\textbf{Lemma 1.1.2}} proves the result. We now prove that $e$ is invariant and no matter what we choose the value of $e$ to be in the original 2026 matrix, the result always holds.
 \begin{lemma}
 $\gcd\bigl(v_p(a_1),v_p(a_2),\dots,v_p(a_n)\bigr)$ is invariant under any move.
 \end{lemma}
 \begin{proof}
-    If Confucius chooses $m$ and $n$, then let $x=v_p(m), y=v_p(n)$. These moves replace $m$ and $n$ by $\gcd(m,n), \frac{\operatorname{lcm}(m,n)}{\gcd(m,n)}$. By Lemma 2, that is $\min(x,y)$ and $|x-y|$. In Lemma 2, we also showed this is the Euclidean Algorithm. Hence, $\gcd(x,y)=\gcd(\min(x,y),|x-y|)$, which is the same greatest common factor. Extending to $n$ such integers, the result follows.\hfill$\square$
+    If Confucius chooses $m$ and $n$, then let $x=v_p(m), y=v_p(n)$. These moves replace $m$ and $n$ by $$\gcd(m,n), \frac{\operatorname{lcm}(m,n)}{\gcd(m,n)}.$$ By Lemma 2, that is $\min(x,y)$ and $|x-y|$. In Lemma 2, we also showed this is the Euclidean Algorithm. Hence, $\gcd(x,y)=\gcd(\min(x,y),|x-y|)$, which is the same greatest common factor. Extending to $n$ such integers, the result follows.
 \end{proof}
-\paragraph{For Part (b):} By \textcolor{BrightAqua}{\textbf{Lemma 1.1.2}} exactly one number $M$ remains and all others are 1. Thus $$\gcd(M,1,1,\dots,1)=M.$$ In addition, the greatest common factor of all numbers on the blackboard is just $$\prod_{p} p^{v_{p}(M)} = M.$$ However, by \textcolor{BrightAqua}{\textbf{Lemma 1.1.3}} $p^{v_{p}(M)}$ for all $p$ is invariant hence $M$ is invariant. $\square$
+\paragraph{For Part (b):} By \textcolor{BrightAqua}{\textbf{Lemma 1.1.2}} exactly one number $M$ remains and all others are 1. Thus $$\gcd(M,1,1,\dots,1)=M.$$ In addition, the greatest common factor of all numbers on the blackboard is just $$\prod_{p} p^{v_{p}(M)} = M.$$ However, by \textcolor{BrightAqua}{\textbf{Lemma 1.1.3}} $p^{v_{p}(M)}$ for all $p$ is invariant hence $M$ is invariant. 
 
 \subsubsection{Solution 2}
 \paragraph{For Part (a):} Let the $2026$ numbers be $x_1, x_2, \dots, x_{2026}$. For any two arbitrary numbers $x, y$ among these $2026$ numbers, let $d=\gcd(x,y)$. Then there exist coprime positive integers $a, b$ such that $x=da, y=db$. We then have:
 $$\dfrac{\operatorname{lcm}(x,y)}{\gcd(x,y)}=\dfrac{\operatorname{lcm}(x,y) \cdot \gcd(x,y)}{\gcd(x,y)^2}=\dfrac{xy}{d^2}=\dfrac{x}{d} \cdot \dfrac{y}{d}=ab.$$Therefore, the two new numbers are $d$ and $ab$.
 
+\medskip
 On the other hand, since 
 \begin{align*}
 g(x)+g(y)&=g(d \cdot a)+g(d \cdot b)\\&=g(a)+g(d)+g(b)+g(d)\\&=g(a)+g(b)+2g(d),
 \end{align*}
 and $$g(ab)+g(d)=g(d)+g(a)+g(b).$$Thus, when replacing $x, y$ with $d, ab$ in the sequence of $2026$ numbers, the sum $$S=g(x_1)+g(x_2)+...+g(x_{2026}).$$ decreases by exactly $g(d)$ at each step.
 
+\medskip
 Let $C$ be the number of integers strictly greater than $1$ on the board. Each step replaces two numbers $x, y$ (both $>1$) with $d$ and $ab$, while the rest remain unchanged. The two removed numbers contribute exactly $2$ to $C$, whereas the two new numbers contribute at most $2$ to $C$, so $C$ does not increase after each step. Furthermore, the two new numbers cannot both be $1$: if $\operatorname{lcm}(x,y)/\gcd(x,y)=1$, then $\operatorname{lcm}(x,y)=\gcd(x,y)$, meaning $x=y$, in which case $d=\gcd(x,y)=x>1$, a contradiction. Therefore, at each step, $C$ decreases by either $0$ or $1$. Since a step can only be executed if there are at least two numbers $>1$, and after the step there is still at least one number $>1$, starting from $C=2026$, we always have $C\ge 1$ throughout the process.
 
+\medskip
 Next, we set $t=S+C$. Since $t$ is a positive integer, we observe the following:
 \begin{itemize}
 \item If $d>1$, then $S$ decreases by at least $1$.
@@ -105,7 +103,8 @@ For each prime number $p$, let $u=v_p(x),\ v=v_p(y)$. We have $$v_p(\gcd(x,y))=\
 and$$v_p\left(\dfrac{\operatorname{lcm}(x,y)}{\gcd(x,y)}\right)=v_p(\operatorname{lcm}(x,y))-v_p(\gcd(x,y))=|u-v|.$$
 Thus, when replacing $x, y$ with $\gcd(x,y), \frac{\operatorname{lcm}(x,y)}{\gcd(x,y)}$, the pair $(v_p(x), v_p(y))$ transforms into $$\left(v_p(\gcd(x,y)), v_p\left(\frac{\operatorname{lcm}(x,y)}{\gcd(x,y)}\right)\right).$$ Since $\gcd(u,v)=\gcd(\min(u,v),|u-v|)$, and the other numbers remain unchanged, we have an invariant: for each prime $p$, the greatest common divisor of the $v_p$'s across the entire board does not change through any steps.
 
-In the final state, the board consists of $M$ and $2025$ ones. For each prime $p$, the exponents $v_p$ on the board are $v_p(M)$ along with $0$'s, so the greatest common divisor of the $v_p$'s across the board is simply $v_p(M)$. Therefore, $$v_p(M)= \gcd(v_p(x_1),v_p(x_2),...,v_p(x_{2026})),$$ meaning $$M=\prod_{p \mid M} p^{\gcd(v_p(x_1),v_p(x_2),...,v_p(x_{2026}))}.$$ The right-hand side depends only on the initial set of numbers and is independent of Confucius's choices. Furthermore, each $x_i>1$ has a prime divisor $p$, so the greatest common divisor of the $v_p$'s across the board is always greater than or equal to $1$ for at least one prime $p$, reaffirming that $M>1$. $\square$
+\medskip
+In the final state, the board consists of $M$ and $2025$ ones. For each prime $p$, the exponents $v_p$ on the board are $v_p(M)$ along with $0$'s, so the greatest common divisor of the $v_p$'s across the board is simply $v_p(M)$. Therefore, $$v_p(M)= \gcd(v_p(x_1),v_p(x_2),...,v_p(x_{2026})),$$ meaning $$M=\prod_{p \mid M} p^{\gcd(v_p(x_1),v_p(x_2),...,v_p(x_{2026}))}.$$ The right-hand side depends only on the initial set of numbers and is independent of Confucius's choices. Furthermore, each $x_i>1$ has a prime divisor $p$, so the greatest common divisor of the $v_p$'s across the board is always greater than or equal to $1$ for at least one prime $p$, reaffirming that $M>1$. 
 \newpage
 \subsubsection{Solution 3}
 Let's fix initial $2026$ integers, and let those be $a_1,a_2,\dots , a_{2026}$. Let us construct a directed graph consisting of sets of $2026$ numbers and connect $A \to a$, where $A, a \in \mathbb Z_+^{2026}$ if and only if $A$ is achievable from $a$ by providing one $\gcd$-$\mathrm{lcm}$ operation. Let now switch to the exponent analysis, that is we change $a_i$ to $\nu_p(a_i)$ and observe our operation now is $(x,y) \to (|x-y|,\min(x,y))$. We will now use Newman's lemma to show the uniqueness of the terminal position for any $p$. Let’s show that, by carrying out any two steps, we can arrive at the same final result:
@@ -134,7 +133,7 @@ If $a \ge b, c \ge d$ in such for the following pair of operations:
 \end{aligned}
 \]
 Thus, if we remove the cycles from the graph where the position with $2025$ zeros comes to a cycle, from the unity of the final position we can take simply $p$ raised to the powers of the exponents of the sets, and it is clear that, since $$|x-y|+\min (x,y)=\max (x, y) > x+y, \quad \forall x,y>0,$$ for any prime $p$, eventually $2025$ valuations will be zero at the final position. Futhermore, returning to the initial sets, if two numbers have valuations greater than $0$ for any two primes, then the position is not terminal, as a move can still be made. Thus, eventually, for $2025$ numbers, the valuation modulo any prime is $0$, which completes part a. For the part b just note that from Euclidean algorithm $\gcd (x,y) = \gcd (|x-y|,\min (x,y))$. Hence, \(\gcd(\nu_p(a_1),\nu_p(a_2),\ldots,\nu_p(a_{2026}))\) is invarint and therefore:
-$$M = \prod_{p\text{ prime}}^{}p^{\gcd(\nu_p(a_1),\nu_p(a_2),\ldots,\nu_p(a_{2026}))},$$which depends only on $a_1,a_2,\dots , a_{2026}$ as required. $\Box$
+$$M = \prod_{p\text{ prime}}^{}p^{\gcd(\nu_p(a_1),\nu_p(a_2),\ldots,\nu_p(a_{2026}))},$$which depends only on $a_1,a_2,\dots , a_{2026}$ as required. 
 
 \newpage
 \subsection{International Mathematical Olympiad/Problem 2}
@@ -150,92 +149,92 @@ Let $O$ be the circumcentre of triangle $AKL$. Prove that $OM = ON$.
     \centering
 \begin{asy}
     size(14cm);
-    import geometry;
-    import graph;
+import geometry;
+import graph;
 
-    pen pen_000000 = RGB(0, 0, 0);
-    pen pen_ff0000 = RGB(255, 0, 0);
-    pen pen_ff7f00 = RGB(255, 127, 0);
-    pen pen_0000ff = RGB(0, 0, 255);
-    pen pen_0099ff = RGB(0, 153, 255);
-    pen pen_9966ff = RGB(153, 102, 255);
+pen pen_000000 = RGB(0, 0, 0);
+pen pen_ff0000 = RGB(255, 0, 0);
+pen pen_ff7f00 = RGB(255, 127, 0);
+pen pen_0000ff = RGB(0, 0, 255);
+pen pen_0099ff = RGB(0, 153, 255);
+pen pen_9966ff = RGB(153, 102, 255);
 
-    pair point_A = (-4.0000000000000000, 3.2200000000000000);
-    pair point_B = (-6.7200000000000000, -4.2600000000000000);
-    pair point_C = (3.5000000000000000, -4.3000000000000000);
-    pair point_M = (-5.3599999999999990, -0.5199999999999998);
-    pair point_N = (-0.2500000000000000, -0.5399999999999998);
-    pair point_D = (-4.8199275125377050, 0.9651993405213131);
-    pair point_E = (-2.7303162200442230, 1.9469303966310076);
-    pair point_R = (-5.7699637562688530, -1.6474003297393434);
-    pair point_S = (0.3848418899778885, -1.1765348016844960);
-    pair point_P = (-4.4099637562688520, 2.0925996702606566);
-    pair point_Q = (-3.3651581100221115, 2.5834651983155040);
-    pair point_K = (-5.3894065746184920, -2.1899359966695497);
-    pair point_L = (-0.0871117911968039, -2.0299250974333476);
-    pair point_O = (-2.8028115577637602, 0.0291469913591767);
-    pair point_O_1 = (-1.6056231155275191, -3.1617060172816460);
-    path seg_f = point_A--point_B;
-    path seg_g = point_B--point_C;
-    path seg_h = point_A--point_C;
-    path seg_i = point_B--point_E;
-    path seg_j = point_D--point_C;
-    path seg_l = point_M--point_O;
-    path seg_m = point_O--point_N;
-    path seg_q = point_B--point_O_1;
-    path seg_r = point_O_1--point_C;
-    path seg_s = point_O_1--point_A;
-    path circ_c = circumcircle(point_B, point_D, point_C);
-    path circ_d = circumcircle(point_A, point_R, point_S);
-    path circ_e = circumcircle(point_P, point_E, point_N);
-    path circ_k = circumcircle(point_Q, point_D, point_M);
+pair point_A = (-4.0000000000000000, 3.2200000000000000);
+pair point_B = (-6.7200000000000000, -4.2600000000000000);
+pair point_C = (3.5000000000000000, -4.3000000000000000);
+pair point_M = (-5.3599999999999990, -0.5199999999999998);
+pair point_N = (-0.2500000000000000, -0.5399999999999998);
+pair point_D = (-4.8199275125377050, 0.9651993405213131);
+pair point_E = (-2.7303162200442230, 1.9469303966310076);
+pair point_R = (-5.7699637562688530, -1.6474003297393434);
+pair point_S = (0.3848418899778885, -1.1765348016844960);
+pair point_P = (-4.4099637562688520, 2.0925996702606566);
+pair point_Q = (-3.3651581100221115, 2.5834651983155040);
+pair point_K = (-5.3894065746184920, -2.1899359966695497);
+pair point_L = (-0.0871117911968039, -2.0299250974333476);
+pair point_O = (-2.8028115577637602, 0.0291469913591767);
+pair point_O_1 = (-1.6056231155275191, -3.1617060172816460);
+path seg_f = point_A--point_B;
+path seg_g = point_B--point_C;
+path seg_h = point_A--point_C;
+path seg_i = point_B--point_E;
+path seg_j = point_D--point_C;
+path seg_l = point_M--point_O;
+path seg_m = point_O--point_N;
+path seg_q = point_B--point_O_1;
+path seg_r = point_O_1--point_C;
+path seg_s = point_O_1--point_A;
+path circ_c = circumcircle(point_B, point_D, point_C);
+path circ_d = circumcircle(point_A, point_R, point_S);
+path circ_e = circumcircle(point_P, point_E, point_N);
+path circ_k = circumcircle(point_Q, point_D, point_M);
 
-    draw(seg_f, pen_000000);
-    draw(seg_g, pen_000000);
-    draw(seg_h, pen_000000);
-    draw(seg_i, pen_000000);
-    draw(seg_j, pen_000000);
-    draw(seg_l, pen_0099ff);
-    draw(seg_m, pen_0099ff);
-    draw(seg_q, pen_0099ff, StickIntervalMarker(1, 2, p=pen_0099ff, size=0.3cm));
-    draw(seg_r, pen_0099ff, StickIntervalMarker(1, 2, p=pen_0099ff, size=0.3cm));
-    draw(seg_s, pen_9966ff+dashed);
-    draw(circ_c, pen_ff0000);
-    draw(circ_d, pen_ff7f00);
-    draw(circ_e, pen_0000ff+dotted);
-    draw(circ_k, pen_0000ff+dotted);
+draw(seg_f, pen_000000);
+draw(seg_g, pen_000000);
+draw(seg_h, pen_000000);
+draw(seg_i, pen_000000);
+draw(seg_j, pen_000000);
+draw(seg_l, pen_0099ff);
+draw(seg_m, pen_0099ff);
+draw(seg_q, pen_0099ff, StickIntervalMarker(1, 2, p=pen_0099ff, size=0.3cm));
+draw(seg_r, pen_0099ff, StickIntervalMarker(1, 2, p=pen_0099ff, size=0.3cm));
+draw(seg_s, pen_9966ff+dashed);
+draw(circ_c, pen_ff0000);
+draw(circ_d, pen_ff7f00);
+draw(circ_e, pen_0000ff+dotted);
+draw(circ_k, pen_0000ff+dotted);
 
-    dot(point_A);
-    dot(point_B);
-    dot(point_C);
-    dot(point_M);
-    dot(point_N);
-    dot(point_D);
-    dot(point_E);
-    dot(point_R);
-    dot(point_S);
-    dot(point_P);
-    dot(point_Q);
-    dot(point_K);
-    dot(point_L);
-    dot(point_O);
-    dot(point_O_1);
+dot(point_A);
+dot(point_B);
+dot(point_C);
+dot(point_M);
+dot(point_N);
+dot(point_D);
+dot(point_E);
+dot(point_R);
+dot(point_S);
+dot(point_P);
+dot(point_Q);
+dot(point_K);
+dot(point_L);
+dot(point_O);
+dot(point_O_1);
 
-    label("$A$", point_A, dir(point_A));
-    label("$B$", point_B, dir(point_B));
-    label("$C$", point_C, dir(point_C));
-    label("$M$", point_M, dir(point_M));
-    label("$N$", point_N, 0.8NE);
-    label("$D$", point_D, dir(point_D));
-    label("$E$", point_E, 0.8NE);
-    label("$R$", point_R, dir(point_R));
-    label("$S$", point_S, E+0.5N);
-    label("$P$", point_P, dir(point_P));
-    label("$Q$", point_Q, 0.8NE);
-    label("$K$", point_K, 1.5S);
-    label("$L$", point_L, dir(point_L));
-    label("$O$", point_O, NE);
-    label("$O_{1}$", point_O_1, S);
+label("$A$", point_A, dir(point_A));
+label("$B$", point_B, dir(point_B));
+label("$C$", point_C, dir(point_C));
+label("$M$", point_M, dir(point_M));
+label("$N$", point_N, 0.8NE);
+label("$D$", point_D, dir(point_D));
+label("$E$", point_E, 0.8NE);
+label("$R$", point_R, dir(point_R));
+label("$S$", point_S, E+0.5N);
+label("$P$", point_P, dir(point_P));
+label("$Q$", point_Q, 0.8NE);
+label("$K$", point_K, 1.5S);
+label("$L$", point_L, dir(point_L));
+label("$O$", point_O, NE);
+label("$O_{1}$", point_O_1, S);
 \end{asy}
 \end{figure}
 Extends $CL$ and $BK$ intersect $AC$ and $AB$ at $E$ and $D$, respectively. It is easy to see that $BDEC$ is a cyclic quadrilateral. Notice that
@@ -248,7 +247,7 @@ $P\in \Omega_B$ and $Q\in \Omega_C$.
 \end{claim}
 \begin{proof}
     Notice that $AE\cdot AC=AD\cdot AB$, we have
-$$AE\cdot AN=\frac{1}{2}AE\cdot AC=\frac{1}{2}AD\cdot AB=AP\cdot AB.$$Therefore, $P\in \Omega_B$. Similarly, $Q\in \Omega_C$ as desired.\hfill$\square$
+$$AE\cdot AN=\frac{1}{2}AE\cdot AC=\frac{1}{2}AD\cdot AB=AP\cdot AB.$$Therefore, $P\in \Omega_B$. Similarly, $Q\in \Omega_C$ as desired.
 \end{proof}
 
 \begin{claim}
@@ -264,7 +263,7 @@ $$AE\cdot AN=\frac{1}{2}AE\cdot AC=\frac{1}{2}AD\cdot AB=AP\cdot AB.$$Therefore,
 \end{align*}because $AQ=NS$, and observe further that
 $$
     \operatorname{Pow}(D,\Omega_A)=-DA\cdot DR=-DP\cdot DB=\operatorname{Pow}(D,\Omega_B),
-$$and $\operatorname{Pow}(L_1,\Omega_A,\Omega_B)=0$. So, $L_1,D$, and $C$ lies on the radical axis of $\Omega_A$ and $\Omega_B$; that implies $C,L_1$, and $D$ are collinear. Thus, $L_1=L$. Hence, $L\in \Omega_A$. Analogously, $K\in \Omega_A$ as desired.\hfill$\square$
+$$and $\operatorname{Pow}(L_1,\Omega_A,\Omega_B)=0$. So, $L_1,D$, and $C$ lies on the radical axis of $\Omega_A$ and $\Omega_B$; that implies $C,L_1$, and $D$ are collinear. Thus, $L_1=L$. Hence, $L\in \Omega_A$. Analogously, $K\in \Omega_A$ as desired.
 \end{proof}
 
 \begin{claim}
@@ -272,10 +271,8 @@ $$and $\operatorname{Pow}(L_1,\Omega_A,\Omega_B)=0$. So, $L_1,D$, and $C$ lies o
 \end{claim}
 \begin{proof}
     Let $O_1$ be an antipode of $A$ on $(AKL)$. Notice that $RO_1$ and $SO_1$ are perpendicular to $AB$ and $AC$, respectively. Since $R$ and $S$ are midpoints of $BD$ and $CE$, we must have $O_1$ as the circumcenter of the quadrilateral $BDEC$; that is $O_1B=O_1C$. By observing the homothety of ratio $1:2$ that sends $\triangle{MON}\mapsto \triangle{BO_1C}$, we have $OM=ON$ as desired. 
-    
-    \hfill$\square$
 \end{proof}
-\noindent
+
 From the claims above, it is enough to conclude that $OM=ON$ as desired.
 \newpage
 \subsubsection{Solution 2}
@@ -283,63 +280,63 @@ From the claims above, it is enough to conclude that $OM=ON$ as desired.
     \centering
     \begin{asy}
         import geometry;
-        size(14cm);
-        defaultpen(fontsize(10pt));
+size(14cm);
+defaultpen(fontsize(10pt));
 
-        pair A = dir(100);
-        pair B = dir(210);
-        pair C = dir(330);
-        pair M = midpoint(A--B);
-        pair N = midpoint(A--C);
+pair A = dir(100);
+pair B = dir(210);
+pair C = dir(330);
+pair M = midpoint(A--B);
+pair N = midpoint(A--C);
 
-        pair X = A + 0.7*(B-A);
-        pair Y = A + abs(X-A)*abs(B-A)/abs(C-A)^2*(C-A);   // AX*AB = AY*AC forces (BXYC) cyclic
-        pair R = circumcenter(B, X, C);
-        pair O = midpoint(A--R);
+pair X = A + 0.7*(B-A);
+pair Y = A + abs(X-A)*abs(B-A)/abs(C-A)^2*(C-A);   // AX*AB = AY*AC forces (BXYC) cyclic
+pair R = circumcenter(B, X, C);
+pair O = midpoint(A--R);
 
-        path lineBY = (B-0.2*(Y-B))--(B+2.0*(Y-B));
-        path lineCX = (C-0.2*(X-C))--(C+2.0*(X-C));
-        pair[] kk = intersectionpoints(circumcircle(C, X, M), lineBY);
-        pair K  = (kk[0].y < kk[1].y) ? kk[0] : kk[1];
-        pair Kp = (kk[0].y < kk[1].y) ? kk[1] : kk[0];
-        pair[] ll = intersectionpoints(circumcircle(B, Y, N), lineCX);
-        pair L  = (ll[0].y < ll[1].y) ? ll[0] : ll[1];
-        pair Lp = (ll[0].y < ll[1].y) ? ll[1] : ll[0];
-        pair D = extension(B, Y, C, X);
-        pair Z = midpoint(B--X);
-        pair W = midpoint(C--Y);
-        pair Xp = midpoint(A--X);
+path lineBY = (B-0.2*(Y-B))--(B+2.0*(Y-B));
+path lineCX = (C-0.2*(X-C))--(C+2.0*(X-C));
+pair[] kk = intersectionpoints(circumcircle(C, X, M), lineBY);
+pair K  = (kk[0].y < kk[1].y) ? kk[0] : kk[1];
+pair Kp = (kk[0].y < kk[1].y) ? kk[1] : kk[0];
+pair[] ll = intersectionpoints(circumcircle(B, Y, N), lineCX);
+pair L  = (ll[0].y < ll[1].y) ? ll[0] : ll[1];
+pair Lp = (ll[0].y < ll[1].y) ? ll[1] : ll[0];
+pair D = extension(B, Y, C, X);
+pair Z = midpoint(B--X);
+pair W = midpoint(C--Y);
+pair Xp = midpoint(A--X);
 
-        draw(circumcircle(B, X, C), red);
-        draw(circumcircle(C, X, M), blue);
-        draw(circumcircle(B, Y, N), blue);
-        draw(circle(O, abs(O-A)), dashed+deepgreen+0.8);
+draw(circumcircle(B, X, C), red);
+draw(circumcircle(C, X, M), blue);
+draw(circumcircle(B, Y, N), blue);
+draw(circle(O, abs(O-A)), dashed+deepgreen+0.8);
 
-        draw(A--B--C--cycle, black+1);
-        draw(B--Kp, black+0.6);
-        draw(C--Lp, black+0.6);
-        draw(M--N, dotted+gray(0.5));
-        draw(A--R, dotted+gray(0.5));
-        draw(O--M, dashed+purple);
-        draw(O--N, dashed+purple);
+draw(A--B--C--cycle, black+1);
+draw(B--Kp, black+0.6);
+draw(C--Lp, black+0.6);
+draw(M--N, dotted+gray(0.5));
+draw(A--R, dotted+gray(0.5));
+draw(O--M, dashed+purple);
+draw(O--N, dashed+purple);
 
-        dot("$A$", A, dir(100));
-        dot("$B$", B, dir(190));
-        dot("$C$", C, dir(-25));
-        dot("$M$", M, dir(145));
-        dot("$N$", N, 1.6*dir(42));
-        dot("$X$", X, dir(110));
-        dot("$Y$", Y, 1.3*dir(85));
-        dot("$K$", K, 1.5*dir(-115));
-        dot("$L$", L, dir(-75));
-        dot("$K'$", Kp, dir(50));
-        dot("$L'$", Lp, dir(170));
-        dot("$D$", D, dir(-87));
-        dot("$Z$", Z, 1.5*dir(145));
-        dot("$W$", W, dir(43));
-        dot("$X'$", Xp, dir(145));
-        dot("$R$", R, dir(-85));
-        dot("$O$", O, 1.2*dir(60));
+dot("$A$", A, dir(100));
+dot("$B$", B, dir(190));
+dot("$C$", C, dir(-25));
+dot("$M$", M, dir(145));
+dot("$N$", N, 1.6*dir(42));
+dot("$X$", X, dir(110));
+dot("$Y$", Y, 1.3*dir(85));
+dot("$K$", K, 1.5*dir(-115));
+dot("$L$", L, dir(-75));
+dot("$K'$", Kp, dir(50));
+dot("$L'$", Lp, dir(170));
+dot("$D$", D, dir(-87));
+dot("$Z$", Z, 1.5*dir(145));
+dot("$W$", W, dir(43));
+dot("$X'$", Xp, dir(145));
+dot("$R$", R, dir(-85));
+dot("$O$", O, 1.2*dir(60));
     \end{asy}
 \end{figure}
 \noindent
@@ -455,99 +452,101 @@ Analogously, $C$ lies on the radical axis of $(AO)$ and $(BNE)$. Hence $K$ and $
 \begin{figure}[H]
     \centering
     \begin{asy}
-        import graph; 
-        size(14cm); 
-        real labelscalefactor = 0.5; /* changes label-to-point distance */
-        pen dps = linewidth(0.2) + fontsize(10); defaultpen(dps); /* default pen style */ 
-        pen dotstyle = black; /* point style */ 
-        real xmin = -7.8, xmax = 11.48, ymin = -7.37, ymax = 5.57;  /* image dimensions */
-        pen wewdxt = rgb(0.43137254901960786,0.42745098039215684,0.45098039215686275); 
-        pen bqqqsq = rgb(0.6901960784313725,0,0.12549019607843137); 
-        pen rutezs = rgb(0.0784313725490196,0.24313725490196078,0.5725490196078431); 
+        import graph; size(14cm); 
+real labelscalefactor = 0.5; /* changes label-to-point distance */
+pen dps = linewidth(0.2) + fontsize(10); defaultpen(dps); /* default pen style */ 
+pen dotstyle = black; /* point style */ 
+real xmin = -7.8, xmax = 11.48, ymin = -7.37, ymax = 5.57;  /* image dimensions */
+pen wewdxt = rgb(0.43137254901960786,0.42745098039215684,0.45098039215686275); 
+pen bqqqsq = rgb(0.6901960784313725,0,0.12549019607843137); 
+pen rutezs = rgb(0.0784313725490196,0.24313725490196078,0.5725490196078431); 
 
-        /* define paths for intersections later */
-        path lineAB_path = (-3.88049,4.89775)--(-5.84,-2.92);
-        path lineAC_path = (-3.88049,4.89775)--(3.68,-3.4);
-        path w2_path = circle((0.23856,0.40695), 5.13192);
-        path w1_path = circle((-3.66286,-0.00182), 3.64086);
+/* define paths for intersections later */
+path lineAB_path = (-3.88049,4.89775)--(-5.84,-2.92);
+path lineAC_path = (-3.88049,4.89775)--(3.68,-3.4);
+path w2_path = circle((0.23856,0.40695), 5.13192);
+path w1_path = circle((-3.66286,-0.00182), 3.64086);
 
-        /* draw figures */
-        draw(lineAB_path, linewidth(1) + wewdxt); 
-        draw((-5.84,-2.92)--(3.68,-3.4), linewidth(1) + wewdxt); 
-        draw(lineAC_path, linewidth(1) + wewdxt); 
-        draw(circle((-0.98937,-1.36250), 5.09455), linewidth(0.8) + linetype("2 2") + red); 
-        draw((-2.58486,3.47577)--(-5.84,-2.92), linewidth(1) + wewdxt); 
-        draw((-4.53193,2.29875)--(3.68,-3.4), linewidth(1) + wewdxt); 
-        draw(w2_path, linewidth(0.8) + linetype("2 2") + bqqqsq); 
-        draw(w1_path, linewidth(0.8) + linetype("2 2") + bqqqsq); 
-        draw(circle((-2.43493,1.76763), 3.44773), linewidth(1) + rutezs); 
-        draw((-5.18596,-0.31063)--(-0.98937,-1.36250), linewidth(0.8) + linetype("2 2") + wewdxt); 
-        draw((-0.98937,-1.36250)--(0.54757,0.03789), linewidth(0.8) + linetype("2 2") + wewdxt); 
+/* draw figures */
+draw(lineAB_path, linewidth(1) + wewdxt); 
+draw((-5.84,-2.92)--(3.68,-3.4), linewidth(1) + wewdxt); 
+draw(lineAC_path, linewidth(1) + wewdxt); 
+draw(circle((-0.98937,-1.36250), 5.09455), linewidth(0.8) + linetype("2 2") + red); 
+draw((-2.58486,3.47577)--(-5.84,-2.92), linewidth(1) + wewdxt); 
+draw((-4.53193,2.29875)--(3.68,-3.4), linewidth(1) + wewdxt); 
+draw(w2_path, linewidth(0.8) + linetype("2 2") + bqqqsq); 
+draw(w1_path, linewidth(0.8) + linetype("2 2") + bqqqsq); 
+draw(circle((-2.43493,1.76763), 3.44773), linewidth(1) + rutezs); 
+draw((-5.18596,-0.31063)--(-0.98937,-1.36250), linewidth(0.8) + linetype("2 2") + wewdxt); 
+draw((-0.98937,-1.36250)--(0.54757,0.03789), linewidth(0.8) + linetype("2 2") + wewdxt); 
 
-        /* dots and labels */
-        dot((-3.88049,4.89775),dotstyle); 
-        label("$A$", (-4.10,5.00), NE * labelscalefactor); 
-        dot((-5.84,-2.92),dotstyle); 
-        label("$B$", (-6.26,-3.23), NE * labelscalefactor); 
-        dot((3.68,-3.4),dotstyle); 
-        label("$C$", (3.76,-3.51), NE * labelscalefactor); 
-        dot((-4.86025,0.98887),linewidth(4pt) + dotstyle); 
-        label("$M$", (-4.77,1.16), NE * labelscalefactor); 
-        dot((-0.10025,0.74887),linewidth(4pt) + dotstyle); 
-        label("$N$", (-0.01,0.92), NE * labelscalefactor); 
-        dot((-4.53193,2.29875),linewidth(4pt) + dotstyle); 
-        label("$L'$", (-5.0,2.20), NE * labelscalefactor); 
-        dot((-2.58486,3.47577),linewidth(4pt) + dotstyle); 
-        label("$K'$", (-2.61,3.65), NE * labelscalefactor); 
-        dot((-4.75313,-0.78449),linewidth(4pt) + dotstyle); 
-        label("$K$", (-4.67,-0.9), NE * labelscalefactor); 
-        dot((-0.10474,-0.77354),linewidth(4pt) + dotstyle); 
-        label("$L$", (-0.02,-0.92), NE * labelscalefactor); 
-        dot((-251.29229,114.24387),linewidth(4pt) + dotstyle); 
-        label("$W$", (-251.21,114.42), NE * labelscalefactor); 
-        dot((-0.98937,-1.36250),linewidth(4pt) + dotstyle); 
-        label("$A'$", (-0.91,-1.60), NE * labelscalefactor); 
-        dot((0.54757,0.03789),linewidth(4pt) + dotstyle); 
-        label("$F$", (0.62,0.0), NE * labelscalefactor); 
-        dot((-5.18596,-0.31063),linewidth(4pt) + dotstyle); 
-        label("$G$", (-5.70,-0.45), NE * labelscalefactor); 
+/* dots and labels */
+dot((-3.88049,4.89775),dotstyle); 
+label("$A$", (-4.10,5.00), NE * labelscalefactor); 
+dot((-5.84,-2.92),dotstyle); 
+label("$B$", (-6.26,-3.23), NE * labelscalefactor); 
+dot((3.68,-3.4),dotstyle); 
+label("$C$", (3.76,-3.51), NE * labelscalefactor); 
+dot((-4.86025,0.98887),linewidth(4pt) + dotstyle); 
+label("$M$", (-4.77,1.16), NE * labelscalefactor); 
+dot((-0.10025,0.74887),linewidth(4pt) + dotstyle); 
+label("$N$", (-0.01,0.92), NE * labelscalefactor); 
+dot((-4.53193,2.29875),linewidth(4pt) + dotstyle); 
+label("$L'$", (-5.0,2.20), NE * labelscalefactor); 
+dot((-2.58486,3.47577),linewidth(4pt) + dotstyle); 
+label("$K'$", (-2.61,3.65), NE * labelscalefactor); 
+dot((-4.75313,-0.78449),linewidth(4pt) + dotstyle); 
+label("$K$", (-4.67,-0.9), NE * labelscalefactor); 
+dot((-0.10474,-0.77354),linewidth(4pt) + dotstyle); 
+label("$L$", (-0.02,-0.92), NE * labelscalefactor); 
+dot((-251.29229,114.24387),linewidth(4pt) + dotstyle); 
+label("$W$", (-251.21,114.42), NE * labelscalefactor); 
+dot((-0.98937,-1.36250),linewidth(4pt) + dotstyle); 
+label("$A'$", (-0.91,-1.60), NE * labelscalefactor); 
+dot((0.54757,0.03789),linewidth(4pt) + dotstyle); 
+label("$F$", (0.62,0.0), NE * labelscalefactor); 
+dot((-5.18596,-0.31063),linewidth(4pt) + dotstyle); 
+label("$G$", (-5.70,-0.45), NE * labelscalefactor); 
 
-        /* circle labels */
-        label("$\Omega$", (1.18937 + 5.09455*dir(-75)), SE, red); 
-        label("$\omega_2$", (0.45856 + 5.13192*dir(20)), NE, bqqqsq); 
-        label("$\omega_1$", (-3.66286 + 3.64086*dir(160)), NW, bqqqsq); 
-        label("$\Gamma$", (-2.83493 + 3.44773*dir(135)), NW, rutezs); 
+/* circle labels */
+label("$\Omega$", (1.18937 + 5.09455*dir(-75)), SE, red); 
+label("$\omega_2$", (0.45856 + 5.13192*dir(20)), NE, bqqqsq); 
+label("$\omega_1$", (-3.66286 + 3.64086*dir(160)), NW, bqqqsq); 
+label("$\Gamma$", (-2.83493 + 3.44773*dir(135)), NW, rutezs); 
 
-        /* New intersection points */
-        pair[] int_AK = intersectionpoints(lineAC_path, w2_path);
-        pair[] int_AL = intersectionpoints(lineAB_path, w1_path);
+/* New intersection points */
+pair[] int_AK = intersectionpoints(lineAC_path, w2_path);
+pair[] int_AL = intersectionpoints(lineAB_path, w1_path);
 
-        /* Plot intersection of AK' and w2 (ignoring C) */
-        for(int i=0; i<int_AK.length; ++i) {
-            if(length(int_AK[i] - (3.68,-3.4)) > 0.5) {
-                dot(int_AK[i], linewidth(4pt) + dotstyle);
-                label("$X$", int_AK[i], N * labelscalefactor * 3);
-            }
-        }
+/* Plot intersection of AK' and w2 (ignoring C) */
+for(int i=0; i<int_AK.length; ++i) {
+    if(length(int_AK[i] - (3.68,-3.4)) > 0.5) {
+        dot(int_AK[i], linewidth(4pt) + dotstyle);
+        label("$X$", int_AK[i], N * labelscalefactor * 3);
+    }
+}
 
-        /* Plot intersection of AL' and w1 (ignoring B) */
-        for(int i=0; i<int_AL.length; ++i) {
-            if(length(int_AL[i] - (-5.84,-2.92)) > 0.5) {
-                dot(int_AL[i], linewidth(4pt) + dotstyle);
-                label("$Y$", int_AL[i], NW * labelscalefactor);
-            }
-        }
+/* Plot intersection of AL' and w1 (ignoring B) */
+for(int i=0; i<int_AL.length; ++i) {
+    if(length(int_AL[i] - (-5.84,-2.92)) > 0.5) {
+        dot(int_AL[i], linewidth(4pt) + dotstyle);
+        label("$Y$", int_AL[i], NW * labelscalefactor);
+    }
+}
 
-        clip((xmin,ymin)--(xmin,ymax)--(xmax,ymax)--(xmax,ymin)--cycle); 
+clip((xmin,ymin)--(xmin,ymax)--(xmax,ymax)--(xmax,ymin)--cycle); 
     \end{asy}
 \end{figure}
 Let $K'= BK \cap AC$ and $L' = CL \cap AB$. From the conditions of the problem, we have that $BLNK'$, $CKML'$ and $BL'K'C$ are respectively cyclic. Call these circles $\omega_1, \omega_2$ and $\Omega$ for convenience.
 
+\medskip
 Let $X, Y$ be intersection of $\omega_2$ and $\omega_1$ with $AC$ and $AB$ respectively. We claim that $X$ is the midpoint of $AK’$ and analogously $Y$ is the midpoint of $AL'$. Indeed, just note that
 \[ AX \cdot AC = \mathrm{Pow}_A(\omega_2) = AL' \cdot AM = \frac{1}{2} AL' \cdot AB \implies AX =  \frac{1}{2} AL' \cdot \frac{AB}{AC} = \frac{1}{2} AK' \]since $\triangle AK'L' \sim \triangle ABC$.
 
+\medskip
 Let $A'$ be the $A$-antipode of $(AKL)$. Therefore, to prove that $OM = ON$, it suffices to prove that $A'B = A'C$ by homothety $\mathcal{H}(A, 2)$. We will use phantom point to do this: we instead assume that $A'$ is the circumcenter of $\Omega$, and we will show that $K$ and $L$ lies on circle with diameter $AA'$, which we will call $\Gamma$ for convenience.
 
+\medskip
 To do this, we will show that $BK' \equiv \mathrm{rad}(\Gamma, \omega_2)$. Indeed, let projection of $A'$ to $AB$ and $AC$ be $G$ and $F$ respectively. Then $G, F \in \Gamma$. We also have the following two power calculation, which proves $BK' \equiv \mathrm{rad}(\Gamma, \omega_2)$:
 \begin{align*} 
 \mathrm{Pow}_B(\Gamma) &= BG \cdot BA = \frac{1}{2} BL' \cdot BA = BL' \cdot BM = \mathrm{Pow}_{B}(\omega_2) \\
@@ -559,62 +558,61 @@ To do this, we will show that $BK' \equiv \mathrm{rad}(\Gamma, \omega_2)$. Indee
 \begin{figure}[H]
     \centering
     \begin{asy}
-        import geometry; 
-        size(14cm); 
-        real labelscalefactor = 0.5; /* changes label-to-point distance */
-        pen dps = linewidth(0.7) + fontsize(10); defaultpen(dps); /* default pen style */ 
-        pen dotstyle = black; /* point style */ 
-        real xmin = -2.5952983660369107, xmax = 9.304851108401753, ymin = -2.890416452859565, ymax = 6.339981177716112;  /* image dimensions */
-        pen fuqqzz = rgb(0.9568627450980393,0,0.6); 
+import geometry; size(13cm); 
+real labelscalefactor = 0.5; /* changes label-to-point distance */
+pen dps = linewidth(0.7) + fontsize(10); defaultpen(dps); /* default pen style */ 
+pen dotstyle = black; /* point style */ 
+real xmin = -2.5952983660369107, xmax = 9.304851108401753, ymin = -2.890416452859565, ymax = 6.339981177716112;  /* image dimensions */
+pen fuqqzz = rgb(0.9568627450980393,0,0.6); 
 
-        draw(arc((4.5,3),0.3591594408784305,-86.36641220702231,-50.19442890773481)--(4.5,3)--cycle, linewidth(0.8) + fuqqzz); 
-        draw(arc((0,0),0.3591594408784305,20.466884611212286,56.63886791049988)--(0,0)--cycle, linewidth(0.8) + fuqqzz); 
-        draw(arc((1,3),0.3591594408784305,-108.43494882292202,-88.11393179920499)--(1,3)--cycle, linewidth(0.8) + blue); 
-        draw(arc((7,0),0.3591594408784305,144.73175435884332,165.05277138256034)--(7,0)--cycle, linewidth(0.8) + blue); 
-        draw(arc((0,0),0.3591594408784305,71.56505117707799,91.88606820079501)--(0,0)--cycle, linewidth(0.8) + blue); 
-        draw(arc((7,0),0.3591594408784305,93.63358779297764,129.8055710922652)--(7,0)--cycle, linewidth(0.8) + fuqqzz); 
-         /* draw figures */
-        draw((2,6)--(0,0), linewidth(0.8)); 
-        draw((0,0)--(7,0), linewidth(0.8)); 
-        draw((7,0)--(2,6), linewidth(0.8)); 
-        draw(circle((3.5,1.0589320846622627), 3.6566839021068205), linewidth(0.8)); 
-        draw((7,0)--(1.3353592507973573,4.0060777523920725), linewidth(0.8)); 
-        draw((0,0)--(3.0895749986928567,4.692510001568572), linewidth(0.8)); 
-        draw(circle((2.75,3.5294660423311313), 2.5818671607956523), linewidth(0.8)); 
-        draw((1,3)--(1.04645194936694,1.5893727262302526), linewidth(0.8) + blue); 
-        draw((7,0)--(-0.062083242746548625,1.885309801975236), linewidth(0.8) + blue); 
-        draw((0,0)--(6.837933730153274,2.5520950272215157), linewidth(0.8) + fuqqzz); 
-        draw((4.5,3)--(4.581913479911532,1.7100894902910002), linewidth(0.8) + fuqqzz); 
-        draw((0,0)--(-0.062083242746548625,1.885309801975236), linewidth(0.8) + blue); 
-        draw((7,0)--(6.837933730153274,2.5520950272215157), linewidth(0.8) + fuqqzz); 
-         /* dots and labels */
-        dot((2,6),linewidth(2pt) + dotstyle); 
-        label("$A$", (1.9181386076686993,6.052653625013368), NE * labelscalefactor); 
-        dot((0,0),linewidth(2pt) + dotstyle); 
-        label("$B$", (-0.34456586986541277,-0.32841244126009045), NE * labelscalefactor); 
-        dot((7,0),linewidth(2pt) + dotstyle); 
-        label("$C$", (7.14989446313117,-0.3403844226227048), NE * labelscalefactor); 
-        dot((1,3),linewidth(2pt) + dotstyle); 
-        label("$M$", (0.70896849004465,2.939938470733632), NE * labelscalefactor); 
-        dot((4.5,3),linewidth(2pt) + dotstyle); 
-        label("$N$", (4.587890451531699,3.0955742284476186), NE * labelscalefactor); 
-        dot((1.3353592507973573,4.0060777523920725),linewidth(2pt) + dotstyle); 
-        label("$D$", (1.0681279309230804,4.125164625632454), NE * labelscalefactor); 
-        dot((3.0895749986928567,4.692510001568572),linewidth(2pt) + dotstyle); 
-        label("$E$", (3.1392807066553625,4.735735675125786), NE * labelscalefactor); 
-        dot((3.5,1.0589320846622627),linewidth(2pt) + dotstyle); 
-        label("$Z$", (3.7618237375113086,0.8807576763639606), NE * labelscalefactor); 
-        dot((2.75,3.5294660423311313),linewidth(2pt) + dotstyle); 
-        label("$O$", (2.792093247139547,3.574453482952193), NE * labelscalefactor); 
-        dot((1.04645194936694,1.5893727262302526),linewidth(2pt) + dotstyle); 
-        label("$K$", (1.1758757631866097,1.6828804276591232), NE * labelscalefactor); 
-        dot((4.581913479911532,1.7100894902910002),linewidth(2pt) + dotstyle); 
-        label("$L$", (4.192815066565426,1.6230205208460513), NE * labelscalefactor); 
-        dot((-0.062083242746548625,1.885309801975236),linewidth(2pt) + dotstyle); 
-        label("$F$", (-0.32062190714018407,1.9462640176366393), NE * labelscalefactor); 
-        dot((6.837933730153274,2.5520950272215157),linewidth(2pt) + dotstyle); 
-        label("$G$", (6.994258705417184,2.5688070484925865), NE * labelscalefactor); 
-        clip((xmin,ymin)--(xmin,ymax)--(xmax,ymax)--(xmax,ymin)--cycle); 
+draw(arc((4.5,3),0.3591594408784305,-86.36641220702231,-50.19442890773481)--(4.5,3)--cycle, linewidth(0.8) + fuqqzz); 
+draw(arc((0,0),0.3591594408784305,20.466884611212286,56.63886791049988)--(0,0)--cycle, linewidth(0.8) + fuqqzz); 
+draw(arc((1,3),0.3591594408784305,-108.43494882292202,-88.11393179920499)--(1,3)--cycle, linewidth(0.8) + blue); 
+draw(arc((7,0),0.3591594408784305,144.73175435884332,165.05277138256034)--(7,0)--cycle, linewidth(0.8) + blue); 
+draw(arc((0,0),0.3591594408784305,71.56505117707799,91.88606820079501)--(0,0)--cycle, linewidth(0.8) + blue); 
+draw(arc((7,0),0.3591594408784305,93.63358779297764,129.8055710922652)--(7,0)--cycle, linewidth(0.8) + fuqqzz); 
+ /* draw figures */
+draw((2,6)--(0,0), linewidth(0.8)); 
+draw((0,0)--(7,0), linewidth(0.8)); 
+draw((7,0)--(2,6), linewidth(0.8)); 
+draw(circle((3.5,1.0589320846622627), 3.6566839021068205), linewidth(0.8)); 
+draw((7,0)--(1.3353592507973573,4.0060777523920725), linewidth(0.8)); 
+draw((0,0)--(3.0895749986928567,4.692510001568572), linewidth(0.8)); 
+draw(circle((2.75,3.5294660423311313), 2.5818671607956523), linewidth(0.8)); 
+draw((1,3)--(1.04645194936694,1.5893727262302526), linewidth(0.8) + blue); 
+draw((7,0)--(-0.062083242746548625,1.885309801975236), linewidth(0.8) + blue); 
+draw((0,0)--(6.837933730153274,2.5520950272215157), linewidth(0.8) + fuqqzz); 
+draw((4.5,3)--(4.581913479911532,1.7100894902910002), linewidth(0.8) + fuqqzz); 
+draw((0,0)--(-0.062083242746548625,1.885309801975236), linewidth(0.8) + blue); 
+draw((7,0)--(6.837933730153274,2.5520950272215157), linewidth(0.8) + fuqqzz); 
+ /* dots and labels */
+dot((2,6),linewidth(2pt) + dotstyle); 
+label("$A$", (1.9181386076686993,6.052653625013368), NE * labelscalefactor); 
+dot((0,0),linewidth(2pt) + dotstyle); 
+label("$B$", (-0.34456586986541277,-0.32841244126009045), NE * labelscalefactor); 
+dot((7,0),linewidth(2pt) + dotstyle); 
+label("$C$", (7.14989446313117,-0.3403844226227048), NE * labelscalefactor); 
+dot((1,3),linewidth(2pt) + dotstyle); 
+label("$M$", (0.70896849004465,2.939938470733632), NE * labelscalefactor); 
+dot((4.5,3),linewidth(2pt) + dotstyle); 
+label("$N$", (4.587890451531699,3.0955742284476186), NE * labelscalefactor); 
+dot((1.3353592507973573,4.0060777523920725),linewidth(2pt) + dotstyle); 
+label("$D$", (1.0681279309230804,4.125164625632454), NE * labelscalefactor); 
+dot((3.0895749986928567,4.692510001568572),linewidth(2pt) + dotstyle); 
+label("$E$", (3.1392807066553625,4.735735675125786), NE * labelscalefactor); 
+dot((3.5,1.0589320846622627),linewidth(2pt) + dotstyle); 
+label("$Z$", (3.7618237375113086,0.8807576763639606), NE * labelscalefactor); 
+dot((2.75,3.5294660423311313),linewidth(2pt) + dotstyle); 
+label("$O$", (2.792093247139547,3.574453482952193), NE * labelscalefactor); 
+dot((1.04645194936694,1.5893727262302526),linewidth(2pt) + dotstyle); 
+label("$K$", (1.1758757631866097,1.6828804276591232), NE * labelscalefactor); 
+dot((4.581913479911532,1.7100894902910002),linewidth(2pt) + dotstyle); 
+label("$L$", (4.192815066565426,1.6230205208460513), NE * labelscalefactor); 
+dot((-0.062083242746548625,1.885309801975236),linewidth(2pt) + dotstyle); 
+label("$F$", (-0.32062190714018407,1.9462640176366393), NE * labelscalefactor); 
+dot((6.837933730153274,2.5520950272215157),linewidth(2pt) + dotstyle); 
+label("$G$", (6.994258705417184,2.5688070484925865), NE * labelscalefactor); 
+clip((xmin,ymin)--(xmin,ymax)--(xmax,ymax)--(xmax,ymin)--cycle); 
     \end{asy}
 \end{figure}
 Define $D = CL \cap BA$, $E = BK \cap CA$, $F = CK \cap (DECB)$, $G = BL \cap (DECB)$, and $Z$ as the circumcenter of $(DECB)$. 
@@ -633,10 +631,10 @@ Then, since $A \in CE$, we know $a + ce\overline{a} = c + e$. Substituting to th
 Furthermore, $K \in CF, BE$, hence $k + cf\overline{k} = c + f$ and $k+be\overline{k} = b + e$. Substituting,
 \[2k - 2k - cf\overline{k} - be\overline{k} + ce\overline{a} + 2bf\overline{k} - \overline{a}bf = 0 \Longrightarrow  cf\overline{k} - be\overline{k} + ce\overline{a} + 2bf\overline{k} - \overline{a}bf = 0. \]Then, we get
 \[\frac{\overline{a}}{\overline{k}} = \frac{2bf-cf-be}{bf-ce}. \]
-Then, we simply need to prove that $\frac{a-k}{k-z} = \frac{a}{k} - 1$ is imaginary which is simply some trivial computations. \hfill$\square$
+Then, we simply need to prove that $\frac{a-k}{k-z} = \frac{a}{k} - 1$ is imaginary which is simply some trivial computations. 
 \end{proof}
-\noindent
-Analogously, $\angle{ALZ} = 90^{\circ}$. Therefore, $Z$ is the antipode of $A$ on $(AKL)$. Hence, by homothety on center $A$ with scale $\frac{1}{2}$, then $B \rightarrow M$, $C \rightarrow N$, $Z \rightarrow O$. Since $ZB = ZC$, then $OM = ON$. \hfill$\square$
+
+Analogously, $\angle{ALZ} = 90^{\circ}$. Therefore, $Z$ is the antipode of $A$ on $(AKL)$. Hence, by homothety on center $A$ with scale $\frac{1}{2}$, then $B \rightarrow M$, $C \rightarrow N$, $Z \rightarrow O$. Since $ZB = ZC$, then $OM = ON$. 
 \newpage
 \subsubsection{Solution 6}
 Barycentric coordinates on $\triangle ABC$. Let $K=(x_1, y_1, z_1)$ and $L=(x_2, y_2, z_2)$. Let line $BK$ meet $AC$ at $D=(x_1:0:z_1)$, and let line $CL$ meet $AB$ at $E=(x_1:y_1:0)$. Note that the first angle condition implies $\triangle ABD \sim \triangle ACE$, so
@@ -789,7 +787,7 @@ is symmetric in $B$ and $C$, we similarly have
 \]
 
 \noindent Since $b^2z_1(x_2+y_2) = c^2y_2(x_1+z_1)$, it follows that $\mathrm{LHS} = \mathrm{RHS}$. 
-\hfill$\square$
+
 \newpage
 \subsection{International Mathematical Olympiad/Problem 3}
 \begin{problem*}
@@ -806,9 +804,9 @@ Suppose that Liu Bang cuts the stick into pieces of lengths $a_1,\dots,a_{n+1}$.
 $$0\leq \sum_{i\in I} a_i - \sum_{j\in J} a_j \leq \frac 1{2^{n+1}-1}.$$
 \end{claim}
 \begin{proof}
-    Pigeonhole argument. There are $2^{n+1}$ subset sums of the form $\sum_{i\in I}a_i$, so by pigeonhole two of those differ by at most $\tfrac 1{2^{n+1}-1}$. By cancelling terms appearing in both, we can make $I$ and $J$ disjoint. \hfill$\square$
+    Pigeonhole argument. There are $2^{n+1}$ subset sums of the form $\sum_{i\in I}a_i$, so by pigeonhole two of those differ by at most $\tfrac 1{2^{n+1}-1}$. By cancelling terms appearing in both, we can make $I$ and $J$ disjoint. 
 \end{proof}
-\noindent
+
 Let $$d=\sum_{i\in I}a_i - \sum_{j\in J}a_j.$$ We take $(I,J)$ so that $d$ is minimal. Note that if there is $i\in I$ such that $a_i\leq d$, then we can remove $i$ from $I$ and get a subset with smaller difference. Thus, we assume that $a_i>d$ for all $i$.
 
 \medskip
@@ -827,32 +825,32 @@ Here is the illustration where the sticks in $I$ have lengths $8,9$, while stick
 \begin{figure}[H]
     \centering
     \begin{asy}
-        size(14cm,0);
-        int n = 34;
-        int[] p = {6,8,9,2,4,5};
-        int[] q = {0};
-        int s=0;
-        for(int i=0; i<p.length; ++i){
-        s += p[i];
-        q.push(s);
-        }
-        for(int i=0; i<p.length; ++i){
-        pen s = black+linewidth(1);
-        if(i>=1 && i<=2){
-        s = red + linewidth(1);
-        }
-        else if(i>=3){
-        s = blue + linewidth(1);
-        }
-        draw(arc((0,0),1,q[i]*360/n+3,q[i+1]*360/n-3,CCW), s);
-        real x = (q[i]+q[i+1])/2*360/n;
-        label("$" + ((string)p[i]) + "$", dir(x), dir(x), s);
-        }
-        for(int i=0; i<p.length; ++i){
-        //if(i==1) continue;
-        draw(dir(q[i]*360/n) -- (-dir(q[i]*360/n)), dashed);
-        dot(-dir(q[i]*360/n));
-        }
+        size(12cm,0);
+int n = 34;
+int[] p = {6,8,9,2,4,5};
+int[] q = {0};
+int s=0;
+for(int i=0; i<p.length; ++i){
+s += p[i];
+q.push(s);
+}
+for(int i=0; i<p.length; ++i){
+pen s = black+linewidth(1);
+if(i>=1 && i<=2){
+s = red + linewidth(1);
+}
+else if(i>=3){
+s = blue + linewidth(1);
+}
+draw(arc((0,0),1,q[i]*360/n+3,q[i+1]*360/n-3,CCW), s);
+real x = (q[i]+q[i+1])/2*360/n;
+label("$" + ((string)p[i]) + "$", dir(x), dir(x), s);
+}
+for(int i=0; i<p.length; ++i){
+//if(i==1) continue;
+draw(dir(q[i]*360/n) -- (-dir(q[i]*360/n)), dashed);
+dot(-dir(q[i]*360/n));
+}
     \end{asy}
 \end{figure}
 
@@ -871,32 +869,31 @@ $$\sum_{i \in A} b_i=\varepsilon+\sum_{j \in B} b_j.$$Then Xiang Yu can guarante
     \begin{figure}[H]
         \centering
         \begin{asy}
-            size(8cm);
+        size(8cm);
             draw((0,0)--(10,0), grey);
-            draw((0,2)--(12,2), grey);
-            draw((2,-0.5)--(2,0.5));
-            draw((5,-0.5)--(5,0.5));
-            draw((3,1.5)--(3,2.5));
-            draw((9,1.5)--(9,2.5));
-            draw((2,1.5)--(2,2.5), red);
-            draw((5,1.5)--(5,2.5), red);
-            draw((3,-0.5)--(3,0.5), red);
-            draw((9,-0.5)--(9,0.5), red);
-            draw((10,1.5)--(10,2.5), red);
+draw((0,2)--(12,2), grey);
+draw((2,-0.5)--(2,0.5));
+draw((5,-0.5)--(5,0.5));
+draw((3,1.5)--(3,2.5));
+draw((9,1.5)--(9,2.5));
+draw((2,1.5)--(2,2.5), red);
+draw((5,1.5)--(5,2.5), red);
+draw((3,-0.5)--(3,0.5), red);
+draw((9,-0.5)--(9,0.5), red);
+draw((10,1.5)--(10,2.5), red);
         \end{asy}
     \end{figure}
 The result is that Xiang Yu makes at most $|A|+|B|-1$ cuts, and produces $|A|+|B|-1$ pairs of slices of matching length, along with a "leftover" slice $\ell$ of length $\varepsilon$. With the remaining cuts, Xiang Yu cuts each block not indexed in $A$ or $B$ in half. The result is that, aside from $\ell$ all slices can be paired up by length. Then Xiang Yu can employ the following strategy. Before $\ell$ is chosen, he mirrors Liu Bang's moves; whenever Liu Bang chooses a non-$\ell$ slice, Xiang Yu chooses its equal-length pair. At some point, Liu Bang chooses $\ell$; then Xiang Yu switches to greedily choosing slices, which guarantees him at least half of the remaining length. Therefore, Xiang Yu finishes with his total length at most $\varepsilon$ less than Liu Bang's, i.e. $c \leq \frac{1+\varepsilon}{2}$. 
-\hfill$\square$
 \end{proof}
-\noindent
-Since there are $2^{n+1}$ subsets of $[n+1]$, it follows that two of them must index $b_\bullet$-sums within $\frac{1}{2^{n+1}-1}$ of each other, so we can apply the claim with $\varepsilon=\frac{1}{2^{n+1}-1}$, which establishes the desired upper bound on $c$. \hfill$\square$
+
+Since there are $2^{n+1}$ subsets of $[n+1]$, it follows that two of them must index $b_\bullet$-sums within $\frac{1}{2^{n+1}-1}$ of each other, so we can apply the claim with $\varepsilon=\frac{1}{2^{n+1}-1}$, which establishes the desired upper bound on $c$. 
 
 \paragraph{\textcolor{blue}{Strategy for Liu Bang:}} Let's introduce a few more modifications. WLOG force Xiang Yu to also make exactly $n$ cuts. Thus let $s_1,\cdots,s_{2n+1}$ be the slices in decreasing order of length. Abusing notation, also let $s_i$ denote the length of $s_i$; the usage is intuitive and clear in context. Then $c$ equals $\frac{1}{2}$ plus half the quantity
 $$S:=(s_1-s_2)+(s_3-s_4)+\cdots+(s_{2n-1}-s_{2n})+s_{2n+1},$$so it suffices to maximize $S$ instead. Scale so that the stick has length $2^{n+1}-1$; now we want to show that the Liu Bang can force $S \geq 1$.
 
 \medskip
 Liu Bang's strategy is to cut the stick into blocks of lengths $2^0,\ldots,2^n$. Let $b_i$ be the block of length $2^i$. Construct the following graph $G$ on the $b_i$: for each $j \in [n]$, draw an edge (possibly a self-loop) between the block containing $s_{2j}$ and the block containing $s_{2j-1}$. Then color the block with slice $s_{2n+1}$ red. The number of slices in a block is thus its degree, plus one if it's red. Thus $G$ has $n+1$ vertices and $n$ edges, so there exists a connected component which is a tree. Let $b_k$ be the longest block in this tree. Consider an edge adjacent to $b_k$, formed due to slice $s$ in $b_k$, and slice slice $s'$ in another block, say $b_\ell$. Then we get a contribution of at least $s-s' \leq s-2^{\ell}$ to $S$ (from the $|s-s'|$ term). Summing, we get that the slices in $b_k$ corresponding to edges have total length at most
-$$2^0+\cdots+2^{k-1}+C,$$where $C>0$ is an aggregate contribution to $S$. If $C \geq 1$ we are already done. Otherwise, this quantity is strictly less than $2^k$, so we must have at least one more slice. But since the number of slices in $b_k$ is its degree plus $1$ if it's red, we must have exactly one more slice, and it must be $s_{2n+1}$. Furthermore, its length is at least $1-C$. Adding on our earlier contribution (which does not overlap), we get that $S \geq C+(1-C) \geq 1$, as desired. \hfill$\square$
+$$2^0+\cdots+2^{k-1}+C,$$where $C>0$ is an aggregate contribution to $S$. If $C \geq 1$ we are already done. Otherwise, this quantity is strictly less than $2^k$, so we must have at least one more slice. But since the number of slices in $b_k$ is its degree plus $1$ if it's red, we must have exactly one more slice, and it must be $s_{2n+1}$. Furthermore, its length is at least $1-C$. Adding on our earlier contribution (which does not overlap), we get that $S \geq C+(1-C) \geq 1$, as desired. 
 
 \newpage
 \subsubsection{Solution 3}
@@ -908,25 +905,21 @@ Let each of the partitioned sticks be of length $a_1, a_2, \dots, a_{2n}$, in de
 \begin{proof}
     Liu wants to partition the sticks such that no matter where or how he cuts the larger stick, he can still obtain a net growth. Suppose he creates a cut of two sticks $A < B$. Now, if Xiang leaves $B$ uncut, Liu will grab $B$ first. Otherwise, if he cuts $B$, the worst possible case is that he cuts it into direct halves. To not render $B$ useless, Liu can cut $B$ into double that of $A$, hence it is a net gain greater than or equal to 0. But the thing is, if we have only $A$ and $B$ as our leading sticks, with $B$ double that of $A$, then three new sticks are formed after Xiang cuts, from which by Pigeonhole Principle, Liu obtains the last stick, hence winning the game.
 
+\medskip
 We can guarantee that doubling is the best possible strategy for Liu. If he were to cut triple of quadruple that into pieces $A$ and $B$, Xiang can make some number of cuts with $n$ cuts such that all pieces are useless in comparison to $A$. (Indeed, with the max length 1, there is more than enough $n$ to pass around, as you can check via the base cases.)
 
 \medskip
-So, via the doubling strategy, each of the sticks have lengths $\delta(1, 2, 4, \dots, 2^n)$. Here, $\delta$ is our common ratio. This inner sum is $2^{n+1}-1$. Then, $\delta(2^{n+1} -1) = 1$ hence $\delta = \frac{1}{2^{n+1} -1}$, as desired.\hfill$\square$
+So, via the doubling strategy, each of the sticks have lengths $\delta(1, 2, 4, \dots, 2^n)$. Here, $\delta$ is our common ratio. This inner sum is $2^{n+1}-1$. Then, $\delta(2^{n+1} -1) = 1$ hence $\delta = \frac{1}{2^{n+1} -1}$, as desired.
 \end{proof}
 \begin{lemma}
     Regardless of Xiang's plays, Liu can guarantee $\frac{2^n}{2^{n+1} -1}$ of minimum length.
 \end{lemma}
 \begin{proof}
-    Suppose he were to make these cuts in the common ratio found in \textcolor{BrightAqua}{\textbf{Lemma 1.3.1}}. Then, given such $n+1$ cuts, the only plausible moveset that Xiang could play is to split all given segments in half. That is, he MUST split the larger $n$ segments in half, whereas the last segment of length 1 is as desired. Then, Liu obtains all odd numbered lengths when ordered $a_1 \rightarrow a_n$ in decreased order, which is $\delta(1+1+2+4+\dots+2^{n-1}) = \delta(2^n - 1 + 1)= \delta \cdot 2^n$, which implies the length $\frac{2^n}{2^{n+1} - 1}$, as desired.\hfill$\square$
+    Suppose he were to make these cuts in the common ratio found in \textcolor{BrightAqua}{\textbf{Lemma 1.3.1}}. Then, given such $n+1$ cuts, the only plausible moveset that Xiang could play is to split all given segments in half. That is, he MUST split the larger $n$ segments in half, whereas the last segment of length 1 is as desired. Then, Liu obtains all odd numbered lengths when ordered $a_1 \rightarrow a_n$ in decreased order, which is $\delta(1+1+2+4+\dots+2^{n-1}) = \delta(2^n - 1 + 1)= \delta \cdot 2^n$, which implies the length $\frac{2^n}{2^{n+1} - 1}$, as desired.
 \end{proof}
-\noindent
+
 We denote $c$ to be the minimum length regardless of Xiang's plays. If we prove that Xiang plays optimally yet we still obtain a minimum length, then we may guarantee that Liu obtains a length greater than or equal to this minimum by definition. That is, through \textcolor{BrightAqua}{\textbf{Lemma 1.3.2}}.
-\[c = \boxed{\frac{2^n}{2^{n+1} - 1}} \quad \square\]
-
-
-
-
-
+\[c = \boxed{\frac{2^n}{2^{n+1} - 1}}\]
 
 \newpage
 \section{Solutions to Day II}
@@ -948,10 +941,8 @@ The answer is every $\boxed{\theta=180^{\circ}/n}$ for every integers $n\geqslan
 \end{claim}
 \begin{proof}
     Suppose that the recessive triangle $\mathcal{T}$ is splitted into $\mathcal{T}_1$ and $\mathcal{T}_2$ by choosing a striaght cut from the vertex $A$ to the point $P$ on the perimeter. Suppose that the other two vertices are $B$ and $C$. If $\angle{APB}=90^{\circ}$, then both $\mathcal{T}_1$ and $\mathcal{T}_2$ are recessive, and if $\angle{APB}<90^{\circ}$, then $\angle{APC}>90^{\circ}$; which makes exactly one of $\mathcal{T}_1$ or $\mathcal{T}_2$ is recessive. So, the claim is completed. Suppose that the recessive triangle $\mathcal{T}$ is splitted into $\mathcal{T}_1$ and $\mathcal{T}_2$ by choosing a striaght cut from the vertex $A$ to the point $P$ on the perimeter. Suppose that the other two vertices are $B$ and $C$. If $\angle{APB}=90^{\circ}$, then both $\mathcal{T}_1$ and $\mathcal{T}_2$ are recessive, and if $\angle{APB}<90^{\circ}$, then $\angle{APC}>90^{\circ}$; which makes exactly one of $\mathcal{T}_1$ or $\mathcal{T}_2$ is recessive. So, the claim is completed.
-    
-    \hfill$\square$
 \end{proof}
-\noindent
+
 Therefore, Shan-Yu can start with the equilateral triangle (which is recessive). By the above claim, notice that regardless of how Mulan splits, Shan-Yu can guaranteed to discard the triangle $\mathcal{T}_1$ so that the remaining triangle is always recessive. Hence, Mulan can not have $\theta>90^{\circ}$ as one of the internal angles. This makes every $\theta>90^{\circ}$ fail to satisfy the problem's condition.
 \paragraph{\textcolor{blue}{Prove every} $\textcolor{blue}{\boldsymbol{\theta=180^{\circ}/n}:}$}
 It is clear that $\theta=90^{\circ}$ works as Mulan can split the triangle but making a straight cut from the vertex having the largest angle to its foot of altitude. Hence, we may assume that $\theta<90^{\circ}$.
@@ -959,66 +950,66 @@ It is clear that $\theta=90^{\circ}$ works as Mulan can split the triangle but m
     Suppose that a triangle $\mathcal{T}$ has the smallest angle $\angle{A}<\theta$, let $B\neq A$ be the vertex such that $\angle{B}<90^{\circ}$, and $C\neq A,B$ be another vertex, then we can choose such point $P$ on $AB$ satisfying $\angle{CPB}=\theta$.
 \end{claim}
 \begin{proof}
-    Notice that $\angle{A}<180^{\circ}-\angle{B}$ because $\angle{A}+\angle{B}<180^{\circ}$, so, $\angle{CPB}$ can take every value in $(\angle{A},180^{\circ}-\angle{B})$ by animating $P\in AB$. The condition $\angle{A}<\theta$ and $\theta<180^{\circ}-\angle{B}$ are true as $\theta+\angle{B}<90^{\circ}+90^{\circ}=180^{\circ}$; that is $\theta\in(\angle{A},180^\circ{-\angle{B}})$. Now we get the desired result.\hfill$\square$
+    Notice that $\angle{A}<180^{\circ}-\angle{B}$ because $\angle{A}+\angle{B}<180^{\circ}$, so, $\angle{CPB}$ can take every value in $(\angle{A},180^{\circ}-\angle{B})$ by animating $P\in AB$. The condition $\angle{A}<\theta$ and $\theta<180^{\circ}-\angle{B}$ are true as $\theta+\angle{B}<90^{\circ}+90^{\circ}=180^{\circ}$; that is $\theta\in(\angle{A},180^\circ{-\angle{B}})$. Now we get the desired result.
 \end{proof}
 \begin{figure}[H]
     \centering
     \begin{asy}
         size(8cm);
 
-        import geometry;
-        import graph;
+import geometry;
+import graph;
 
-        pen pen_ff0000 = RGB(255, 0, 0);
-        pen pen_0000ff = RGB(0, 0, 255);
+pen pen_ff0000 = RGB(255, 0, 0);
+pen pen_0000ff = RGB(0, 0, 255);
 
-        path anglemark(pair A, pair B, pair C, real t=8 ... real[] s)
-        {
-        real markscalefactor=0.07;
-        pair M,N,P[],Q[];
-        path mark;
-        int n=s.length;
-        M=t*markscalefactor*unit(A-B)+B;
-        N=t*markscalefactor*unit(C-B)+B;
-        for (int i=0; i<n; ++i)
-        {
-        P[i]=s[i]*markscalefactor*unit(A-B)+B;
-        Q[i]=s[i]*markscalefactor*unit(C-B)+B;
-        }
-        mark=arc(B,M,N);
-        for (int i=0; i<n; ++i)
-        {
-        if (i%2==0)
-        {
-        mark=mark--reverse(arc(B,P[i],Q[i]));
-        }
-        else
-        {
-        mark=mark--arc(B,P[i],Q[i]);
-        }
-        }
-        if (n%2==0 && n!=0)
-        mark=(mark--B--P[n-1]);
-        else if (n!=0)
-        mark=(mark--B--Q[n-1]);
-        else mark=(mark--B--cycle);
-        return mark;
-        }
+path anglemark(pair A, pair B, pair C, real t=8 ... real[] s)
+{
+real markscalefactor=0.07;
+pair M,N,P[],Q[];
+path mark;
+int n=s.length;
+M=t*markscalefactor*unit(A-B)+B;
+N=t*markscalefactor*unit(C-B)+B;
+for (int i=0; i<n; ++i)
+{
+P[i]=s[i]*markscalefactor*unit(A-B)+B;
+Q[i]=s[i]*markscalefactor*unit(C-B)+B;
+}
+mark=arc(B,M,N);
+for (int i=0; i<n; ++i)
+{
+if (i%2==0)
+{
+mark=mark--reverse(arc(B,P[i],Q[i]));
+}
+else
+{
+mark=mark--arc(B,P[i],Q[i]);
+}
+}
+if (n%2==0 && n!=0)
+mark=(mark--B--P[n-1]);
+else if (n!=0)
+mark=(mark--B--Q[n-1]);
+else mark=(mark--B--cycle);
+return mark;
+}
 
-        pair A = (1.75,0);
-        pair B = (-1,0);
-        pair C = (-0.3,1.767);
-        pair P = (1.3,0);
+pair A = (1.75,0);
+pair B = (-1,0);
+pair C = (-0.3,1.767);
+pair P = (1.3,0);
 
-        dot("$A$",A,SE);
-        dot("$B$",B,SW);
-        dot("$C$",C,N);
-        dot("$P$",P,S);
+dot("$A$",A,SE);
+dot("$B$",B,SW);
+dot("$C$",C,N);
+dot("$P$",P,S);
 
-        draw(A--B--C--cycle,pen_ff0000);
-        draw(C--P,pen_0000ff);
+draw(A--B--C--cycle,pen_ff0000);
+draw(C--P,pen_0000ff);
 
-        label("$\theta$", anglemark(C,P,B,0.01), 3.4W+1.5N, fontsize(9pt));
+label("$\theta$", anglemark(C,P,B,0.01), 3.4W+1.5N, fontsize(9pt));
     \end{asy}
 \end{figure}
 \noindent
@@ -1035,181 +1026,181 @@ Here is the demonstration on how Mulan plays with $5\theta=180^{\circ}$ (take no
     \centering
     \begin{asy}
         size(16cm);
-        import geometry;
-        import graph;
+import geometry;
+import graph;
 
-        path anglemark(pair A, pair B, pair C, real t=8 ... real[] s)
-        {
-        real markscalefactor=0.07;
-        pair M,N,P[],Q[];
-        path mark;
-        int n=s.length;
-        M=t*markscalefactor*unit(A-B)+B;
-        N=t*markscalefactor*unit(C-B)+B;
-        for (int i=0; i<n; ++i)
-        {
-        P[i]=s[i]*markscalefactor*unit(A-B)+B;
-        Q[i]=s[i]*markscalefactor*unit(C-B)+B;
-        }
-        mark=arc(B,M,N);
-        for (int i=0; i<n; ++i)
-        {
-        if (i%2==0)
-        {
-        mark=mark--reverse(arc(B,P[i],Q[i]));
-        }
-        else
-        {
-        mark=mark--arc(B,P[i],Q[i]);
-        }
-        }
-        if (n%2==0 && n!=0)
-        mark=(mark--B--P[n-1]);
-        else if (n!=0)
-        mark=(mark--B--Q[n-1]);
-        else mark=(mark--B--cycle);
-        return mark;
-        }
+path anglemark(pair A, pair B, pair C, real t=8 ... real[] s)
+{
+real markscalefactor=0.07;
+pair M,N,P[],Q[];
+path mark;
+int n=s.length;
+M=t*markscalefactor*unit(A-B)+B;
+N=t*markscalefactor*unit(C-B)+B;
+for (int i=0; i<n; ++i)
+{
+P[i]=s[i]*markscalefactor*unit(A-B)+B;
+Q[i]=s[i]*markscalefactor*unit(C-B)+B;
+}
+mark=arc(B,M,N);
+for (int i=0; i<n; ++i)
+{
+if (i%2==0)
+{
+mark=mark--reverse(arc(B,P[i],Q[i]));
+}
+else
+{
+mark=mark--arc(B,P[i],Q[i]);
+}
+}
+if (n%2==0 && n!=0)
+mark=(mark--B--P[n-1]);
+else if (n!=0)
+mark=(mark--B--Q[n-1]);
+else mark=(mark--B--cycle);
+return mark;
+}
 
-        picture[] pics = {};
-        int n=5;
-        for(int i=0; i<n; ++i){
-        picture pic;
-        pics.push(pic);
-        }
+picture[] pics = {};
+int n=5;
+for(int i=0; i<n; ++i){
+picture pic;
+pics.push(pic);
+}
 
-        pen pen_ff0000 = RGB(255, 0, 0);
-        pen pen_ff6699 = RGB(255, 102, 153);
-        pen lg = RGB(180, 180, 180);
+pen pen_ff0000 = RGB(255, 0, 0);
+pen pen_ff6699 = RGB(255, 102, 153);
+pen lg = RGB(180, 180, 180);
 
-        pair point_A = (-0.4460910116830806, 0.5662292276968843);
-        pair point_B = (-0.7500000000000000, 0.0000000000000000);
-        pair point_C = (1.5000000000000000, 0.0000000000000000);
-        pair point_P_1 = (0.3325800288679810, 0.0000000000000000);
-        pair point_P_2 = (0.6662226038593585, 0.2425935520248511);
-        pair point_P_3 = (0.4333932972028370, 0.3103369194736868);
-        pair point_P_4 = (0.2107721242930510, 0.3751101567215501);
-        path ab = point_A--point_B;
-        path bc = point_B--point_C;
-        path ca = point_C--point_A;
-        path ap1 = point_A--point_P_1;
-        path bp1 = point_B--point_P_1;
-        path p2c = point_P_2--point_C;
-        path cp1 = point_C--point_P_1;
-        path p1p3 = point_P_1--point_P_3;
-        path p1p2 = point_P_1--point_P_2;
-        path p2p3 = point_P_2--point_P_3;
-        path p3a = point_P_3--point_A;
-        path p4p1 = point_P_4--point_P_1;
-        path ap2 = point_A--point_P_2;
+pair point_A = (-0.4460910116830806, 0.5662292276968843);
+pair point_B = (-0.7500000000000000, 0.0000000000000000);
+pair point_C = (1.5000000000000000, 0.0000000000000000);
+pair point_P_1 = (0.3325800288679810, 0.0000000000000000);
+pair point_P_2 = (0.6662226038593585, 0.2425935520248511);
+pair point_P_3 = (0.4333932972028370, 0.3103369194736868);
+pair point_P_4 = (0.2107721242930510, 0.3751101567215501);
+path ab = point_A--point_B;
+path bc = point_B--point_C;
+path ca = point_C--point_A;
+path ap1 = point_A--point_P_1;
+path bp1 = point_B--point_P_1;
+path p2c = point_P_2--point_C;
+path cp1 = point_C--point_P_1;
+path p1p3 = point_P_1--point_P_3;
+path p1p2 = point_P_1--point_P_2;
+path p2p3 = point_P_2--point_P_3;
+path p3a = point_P_3--point_A;
+path p4p1 = point_P_4--point_P_1;
+path ap2 = point_A--point_P_2;
 
-        // fig 0
-        fill(pics[0],point_A--point_B--point_C--cycle, palered+white);
+// fig 0
+fill(pics[0],point_A--point_B--point_C--cycle, palered+white);
 
-        draw(pics[0],ab, pen_ff0000);
-        draw(pics[0],bc, pen_ff0000);
-        draw(pics[0],ca, pen_ff0000);
-        draw(pics[0],ap1, pen_ff6699+dashed);
+draw(pics[0],ab, pen_ff0000);
+draw(pics[0],bc, pen_ff0000);
+draw(pics[0],ca, pen_ff0000);
+draw(pics[0],ap1, pen_ff6699+dashed);
 
-        dot(pics[0],point_A);
-        dot(pics[0],point_B);
-        dot(pics[0],point_C);
-        dot(pics[0],point_P_1);
+dot(pics[0],point_A);
+dot(pics[0],point_B);
+dot(pics[0],point_C);
+dot(pics[0],point_P_1);
 
-        label(pics[0],"$C$", point_A, dir(point_A));
-        label(pics[0],"$B$", point_B, dir(point_B));
-        label(pics[0],"$A$", point_C, dir(point_C));
-        label(pics[0],"$P_{1}$", point_P_1, S);
+label(pics[0],"$C$", point_A, dir(point_A));
+label(pics[0],"$B$", point_B, dir(point_B));
+label(pics[0],"$A$", point_C, dir(point_C));
+label(pics[0],"$P_{1}$", point_P_1, S);
 
-        // fig 1
-        fill(pics[1],point_A--point_P_1--point_C--cycle, palered+white);
+// fig 1
+fill(pics[1],point_A--point_P_1--point_C--cycle, palered+white);
 
-        draw(pics[1],ab, lg);
-        draw(pics[1],bp1, lg);
-        draw(pics[1],ap1, pen_ff0000);
-        draw(pics[1],ca, pen_ff0000);
-        draw(pics[1],cp1, pen_ff0000);
-        draw(pics[1],p1p2,pen_ff6699+dashed);
+draw(pics[1],ab, lg);
+draw(pics[1],bp1, lg);
+draw(pics[1],ap1, pen_ff0000);
+draw(pics[1],ca, pen_ff0000);
+draw(pics[1],cp1, pen_ff0000);
+draw(pics[1],p1p2,pen_ff6699+dashed);
 
-        dot(pics[1],point_A);
-        dot(pics[1],point_B,lg);
-        dot(pics[1],point_C);
-        dot(pics[1],point_P_1);
-        dot(pics[1],point_P_2);
+dot(pics[1],point_A);
+dot(pics[1],point_B,lg);
+dot(pics[1],point_C);
+dot(pics[1],point_P_1);
+dot(pics[1],point_P_2);
 
-        label(pics[1],"$C$", point_A, dir(point_A));
-        label(pics[1],"$B$", point_B, dir(point_B), lg);
-        label(pics[1],"$A$", point_C, dir(point_C));
-        label(pics[1],"$P_{1}$", point_P_1, S);
-        label(pics[1],"$P_2$", point_P_2,NE);
+label(pics[1],"$C$", point_A, dir(point_A));
+label(pics[1],"$B$", point_B, dir(point_B), lg);
+label(pics[1],"$A$", point_C, dir(point_C));
+label(pics[1],"$P_{1}$", point_P_1, S);
+label(pics[1],"$P_2$", point_P_2,NE);
 
-        // fig 2
-        fill(pics[2],point_A--point_P_1--point_P_2--cycle, palered+white);
+// fig 2
+fill(pics[2],point_A--point_P_1--point_P_2--cycle, palered+white);
 
-        draw(pics[2],ab, lg);
-        draw(pics[2],bp1, lg);
-        draw(pics[2],ap1, pen_ff0000);
-        draw(pics[2],p2c, lg);
-        draw(pics[2],cp1, lg);
-        draw(pics[2],p1p2,pen_ff0000);
-        draw(pics[2],ap2,pen_ff0000);
-        draw(pics[2],p1p3,pen_ff6699+dashed);
+draw(pics[2],ab, lg);
+draw(pics[2],bp1, lg);
+draw(pics[2],ap1, pen_ff0000);
+draw(pics[2],p2c, lg);
+draw(pics[2],cp1, lg);
+draw(pics[2],p1p2,pen_ff0000);
+draw(pics[2],ap2,pen_ff0000);
+draw(pics[2],p1p3,pen_ff6699+dashed);
 
-        dot(pics[2],point_A);
-        dot(pics[2],point_B,lg);
-        dot(pics[2],point_C,lg);
-        dot(pics[2],point_P_1);
-        dot(pics[2],point_P_2);
-        dot(pics[2],point_P_3);
+dot(pics[2],point_A);
+dot(pics[2],point_B,lg);
+dot(pics[2],point_C,lg);
+dot(pics[2],point_P_1);
+dot(pics[2],point_P_2);
+dot(pics[2],point_P_3);
 
-        label(pics[2],"$C$", point_A, dir(point_A));
-        label(pics[2],"$B$", point_B, dir(point_B), lg);
-        label(pics[2],"$A$", point_C, dir(point_C), lg);
-        label(pics[2],"$P_{1}$", point_P_1, S);
-        label(pics[2],"$P_2$", point_P_2,NE);
-        label(pics[2],"$P_3$", point_P_3,N);
+label(pics[2],"$C$", point_A, dir(point_A));
+label(pics[2],"$B$", point_B, dir(point_B), lg);
+label(pics[2],"$A$", point_C, dir(point_C), lg);
+label(pics[2],"$P_{1}$", point_P_1, S);
+label(pics[2],"$P_2$", point_P_2,NE);
+label(pics[2],"$P_3$", point_P_3,N);
 
-        // fig 3
-        fill(pics[3],point_A--point_P_1--point_P_3--cycle, palered+white);
+// fig 3
+fill(pics[3],point_A--point_P_1--point_P_3--cycle, palered+white);
 
-        draw(pics[3],ab, lg);
-        draw(pics[3],bp1, lg);
-        draw(pics[3],ap1, pen_ff0000);
-        draw(pics[3],p2c, lg);
-        draw(pics[3],cp1, lg);
-        draw(pics[3],p1p2,lg);
-        draw(pics[3],p1p3,pen_ff0000);
-        draw(pics[3],p3a,pen_ff0000);
-        draw(pics[3],p4p1,pen_ff6699+dashed);
-        draw(pics[3],p2p3,lg);
+draw(pics[3],ab, lg);
+draw(pics[3],bp1, lg);
+draw(pics[3],ap1, pen_ff0000);
+draw(pics[3],p2c, lg);
+draw(pics[3],cp1, lg);
+draw(pics[3],p1p2,lg);
+draw(pics[3],p1p3,pen_ff0000);
+draw(pics[3],p3a,pen_ff0000);
+draw(pics[3],p4p1,pen_ff6699+dashed);
+draw(pics[3],p2p3,lg);
 
-        dot(pics[3],point_A);
-        dot(pics[3],point_B,lg);
-        dot(pics[3],point_C,lg);
-        dot(pics[3],point_P_1);
-        dot(pics[3],point_P_2,lg);
-        dot(pics[3],point_P_3);
-        dot(pics[3],point_P_4);
+dot(pics[3],point_A);
+dot(pics[3],point_B,lg);
+dot(pics[3],point_C,lg);
+dot(pics[3],point_P_1);
+dot(pics[3],point_P_2,lg);
+dot(pics[3],point_P_3);
+dot(pics[3],point_P_4);
 
-        label(pics[3],"$C$", point_A, dir(point_A));
-        label(pics[3],"$B$", point_B, dir(point_B), lg);
-        label(pics[3],"$A$", point_C, dir(point_C), lg);
-        label(pics[3],"$P_{1}$", point_P_1, S);
-        label(pics[3],"$P_2$", point_P_2,NE,lg);
-        label(pics[3],"$P_3$", point_P_3,N+0.3E);
-        label(pics[3],"$P_4$", point_P_4,N);
+label(pics[3],"$C$", point_A, dir(point_A));
+label(pics[3],"$B$", point_B, dir(point_B), lg);
+label(pics[3],"$A$", point_C, dir(point_C), lg);
+label(pics[3],"$P_{1}$", point_P_1, S);
+label(pics[3],"$P_2$", point_P_2,NE,lg);
+label(pics[3],"$P_3$", point_P_3,N+0.3E);
+label(pics[3],"$P_4$", point_P_4,N);
 
-        // angle label
-        label(pics[0], "$\theta$", anglemark(point_A,point_P_1,point_B), 0.7NW, fontsize(9pt));
-        label(pics[1], "$\theta$", anglemark(point_C,point_P_1,point_P_2), 0.3S+0.6E, fontsize(9pt));
-        label(pics[2], "$\theta$", anglemark(point_P_3,point_P_1,point_P_2,0.0001), 1.4E +1.8N, fontsize(9pt));
-        label(pics[3], "$\theta$", anglemark(point_A,point_P_1,point_P_4,0.0001), 3N+0.2E, fontsize(9pt));
+// angle label
+label(pics[0], "$\theta$", anglemark(point_A,point_P_1,point_B), 0.7NW, fontsize(9pt));
+label(pics[1], "$\theta$", anglemark(point_C,point_P_1,point_P_2), 0.3S+0.6E, fontsize(9pt));
+label(pics[2], "$\theta$", anglemark(point_P_3,point_P_1,point_P_2,0.0001), 1.4E +1.8N, fontsize(9pt));
+label(pics[3], "$\theta$", anglemark(point_A,point_P_1,point_P_4,0.0001), 3N+0.2E, fontsize(9pt));
 
-        // add
-        add(pics[0].fit(6cm,6cm), (0,0));
-        add(pics[1].fit(6cm,6cm), (6,0));
-        add(pics[2].fit(6cm,6cm), (0,-2));
-        add(pics[3].fit(6cm,6cm), (6,-2));
+// add
+add(pics[0].fit(6cm,6cm), (0,0));
+add(pics[1].fit(6cm,6cm), (6,0));
+add(pics[2].fit(6cm,6cm), (0,-2));
+add(pics[3].fit(6cm,6cm), (6,-2));
     \end{asy}
 \end{figure}
 \paragraph{\textcolor{blue}{Disprove every} $\textcolor{blue}{\boldsymbol{\theta\neq 180^{\circ}/n}:}$}
@@ -1223,9 +1214,9 @@ We say that an angle is good if and only if its measure is of the form $k\cdot \
         \item If $\angle{BAP}$ is good, then $\angle{APC}$ is not good and $\angle{PAC}$ is not good. So, $\triangle{APC}$ can not have any good angles.
         \item If $\angle{APB}$ is good, then $\angle{APC}$ is not good and $\angle{APC}$ is not good. So, $\triangle{APC}$ can not have any good angles.
     \end{itemize}
-    Similarly, if at least one of $\angle{PAC}$ or $\angle{APC}$ is good, then $\triangle{APB}$ can not contain any good angles. \hfill$\square$
+    Similarly, if at least one of $\angle{PAC}$ or $\angle{APC}$ is good, then $\triangle{APB}$ can not contain any good angles. 
 \end{proof}
-\noindent
+
 Shan-Yu may start with the equilateral triangle so that none of the internal angles of $\mathcal{T}$ is good. By using the claim above, after each splits, Shan-Yu can guarantee to remove one triangle so that the new $\mathcal{T}$ does not contain any good internal angles, and this process can be done indefinitely. So, Mulan can not guarantee her win in finitely many steps.
 \newpage
 \subsection{International Mathematical Olympiad/Problem 5}
@@ -1261,22 +1252,22 @@ Here is the main claim.
 4f(x)^2 + 4f(y)^2 &\geq (2f(x)-x+y)^2 + (2f(y)-y+x)^2 \\
 &\geq 4f(x)^2 + 4f(y)^2 - 4(f(x)-f(y))(x-y) + 2(x-y)^2,
 \end{align*}which rearranges to
-$$2(x-y)(2f(x)-2f(y)-x+y) \geq 0.$$Thus, $2f(x)-x \geq 2f(y)-y$, which simplifies to $f(f(x))\geq f(f(y))$. \hfill$\square$
+$$2(x-y)(2f(x)-2f(y)-x+y) \geq 0.$$Thus, $2f(x)-x \geq 2f(y)-y$, which simplifies to $f(f(x))\geq f(f(y))$. 
 \end{proof}
 \begin{claim}
      $f(x)-x$ is non-decreasing.
 \end{claim}
 \begin{proof}
     From above, we have that $f^{2n}$ is non-decreasing. Thus, for all $x\geq y$, we have
-$$x+2n(f(x)-x) \geq y+2n(f(y)-y),$$which implies that $f(x)-x\geq f(y)-y$ after sending $n\to\infty$. \hfill$\square$
+$$x+2n(f(x)-x) \geq y+2n(f(y)-y),$$which implies that $f(x)-x\geq f(y)-y$ after sending $n\to\infty$. 
 \end{proof}
 \begin{claim}
      $f(x)-x$ is either $0$ or $a$ for some constant $a$.
 \end{claim}
 \begin{proof}
-    Assume that there exists $x<y$ such that $f(x)=x+a$ and $f(y)=y+b$ where $a,b>0$. Using $f(f(x)) = 2f(x)-x$, we get $f(x+a)=x+2a$, and by induction, $f(x+na) = x+(n+1)a$. Thus, $t\mapsto f(t)-t$ is constant in interval $[x+na, x+(n+1)a]$ for all $a$ (since we already knew it's monotone), which implies that $f(y)-y = f(x)-x$, a contradiction. \hfill$\square$
+    Assume that there exists $x<y$ such that $f(x)=x+a$ and $f(y)=y+b$ where $a,b>0$. Using $f(f(x)) = 2f(x)-x$, we get $f(x+a)=x+2a$, and by induction, $f(x+na) = x+(n+1)a$. Thus, $t\mapsto f(t)-t$ is constant in interval $[x+na, x+(n+1)a]$ for all $a$ (since we already knew it's monotone), which implies that $f(y)-y = f(x)-x$, a contradiction. 
 \end{proof}
-\noindent
+
 Now, we only have to deal with pointwise trap. If $f(x)=x$ and $f(y)=y+a$, then
 $$\frac{x^2+y^2}{2} \geq \left(\frac{x+y+a}2\right)^2 \geq \frac{(x+y)^2+a^2}{4},$$which implies that that $x-y > 0.01a$. In particular, $f(x)-x$ is constant in any interval of length $0.01a$, so by induction, $f(x)-x$ is constant.
 
@@ -1293,19 +1284,18 @@ Firstly, let's try to get an equality out of the inequalities. By looking at $P(
 \begin{proof}
     By plugging in every combination of $x$, $y$, $f(x)$ and $f(y)$ until something works, we see that if $ x > y$, $P(x, y)$ shows
 \begin{align*}
-\frac{f(f(x)) + y}{2} \ge \sqrt{f(x)f(y)} \\
-&\implies \frac{2f(x) - x + y}{2} \ge \sqrt{f(x)f(y)} \\
+\frac{f(f(x)) + y}{2} \ge \sqrt{f(x)f(y)} &\implies \frac{2f(x) - x + y}{2} \ge \sqrt{f(x)f(y)} \\
 &\implies \frac{2f(x)}{2} \ge \sqrt{f(x)f(y)} \\ 
 &\implies f(x) > f(y).
-\end{align*}Thus $f$ is increasing. \hfill$\square$
+\end{align*}Thus $f$ is increasing. 
 \end{proof}
 \begin{claim}
     There cannot be two distinct positive values of the common difference.
 \end{claim}
 \begin{proof}
-    Assume $c_x > c_y$, for some values of $x$ and $y$. Our aim will be to find some $r \coloneq x + ic_x$ and $s \coloneq y + jc_y$ such that $r < s$ but $f(r) > f(s)$. Since $r$ and $s$ are part of the arithmetic progression, $f(r) > f(s)$ means $r + c_x > s + c_y$, so it suffices to show that we can choose $r$ and $s$ to be within $c_x - c_y$ of each other. Rewriting this, it becomes $(j - 1)c_y - (i - 1)c_x > x - y$, which is possible by just making $j$ as large as we can. \hfill$\square$
+    Assume $c_x > c_y$, for some values of $x$ and $y$. Our aim will be to find some $r \coloneq x + ic_x$ and $s \coloneq y + jc_y$ such that $r < s$ but $f(r) > f(s)$. Since $r$ and $s$ are part of the arithmetic progression, $f(r) > f(s)$ means $r + c_x > s + c_y$, so it suffices to show that we can choose $r$ and $s$ to be within $c_x - c_y$ of each other. Rewriting this, it becomes $(j - 1)c_y - (i - 1)c_x > x - y$, which is possible by just making $j$ as large as we can. 
 \end{proof}
-\noindent
+
 Thus, we have $f(x) = x$ or $f(x) = x + c$ for some global choice of $c$. To deal with the pointwise trap , assume $f(x) = x$ but $f(y) = y + c$.
 Then $P(x, y)$ reads
 \[ \frac{x + y}{2} \ge 4(x(y + c))  \Leftrightarrow (x - y)^2 \ge 4xc , \]but we can take $x$ and $y$ to be arbitrarily close to get a contradiction here.
@@ -1338,26 +1328,24 @@ Let $P(m)$ be the set of all prime divisors of $m$ and consider
     $a_1, a_2, \dots$ are precisely the increasing enumeration of the elements of $\mathcal{S}$ which are at least $a_1$.
 \end{claim}
 \begin{proof}
-    Note that if $i < j$, the choice of $a_j$ forces $\gcd(a_j, a_i) > 1$, which means that $a_j \in \mathcal{S}$ for any $j$. Now, suppose that there exists $m \in \mathcal{S}$ which is not enumerated, then there exists some $n$ for which $a_n < m < a_{n + 1}$. However, this means that $\gcd(m, a_i) > 1$ for all $1 \le i \le n$, since $m \in \mathcal{S}$, while $m < a_{n + 1}$, which contradicts the minimality of $a_{n + 1}$.\hfill$\square$
+    Note that if $i < j$, the choice of $a_j$ forces $\gcd(a_j, a_i) > 1$, which means that $a_j \in \mathcal{S}$ for any $j$. Now, suppose that there exists $m \in \mathcal{S}$ which is not enumerated, then there exists some $n$ for which $a_n < m < a_{n + 1}$. However, this means that $\gcd(m, a_i) > 1$ for all $1 \le i \le n$, since $m \in \mathcal{S}$, while $m < a_{n + 1}$, which contradicts the minimality of $a_{n + 1}$.
 \end{proof}
-\noindent
+
 We can now phrase this condition above in terms of combinatorics of set.
 
 \medskip
-\noindent
 Let $\mathcal{F}$ denote the family of all finite sets $S$ of primes for which $S \cap P(a_n) \not= \varnothing$ for all $n \ge 1$.
 \begin{claim}
     $\mathcal{F}$ is intersecting.
 \end{claim}
 \begin{proof}
     Suppose otherwise, that there exists $X, Y\in \mathcal{F}$ for which $X \cap Y = \varnothing$. Note that neither $X$ and $Y$ can be empty by definition. Therefore, we may choose $a$ and $b$ large enough such that
-\[ x := \left( \prod_{p \in X} p \right)^{a} \ \text{and} \ y := \left( \prod_{p \in Y} p \right)^{b} \]while $x, y > a_1$. We see that $P(x) = X$ and $P(y) = Y$. Since $X, Y \in \mathcal{F}$, we see that $x, y \in \mathcal{S}$. Since $x, y > a_1$, this means that $x, y$ appears in the enumeration of the sequence $a_1, a_2, \dots$. However, $\gcd(x, y) = 1$ since $X \cap Y = \varnothing$, which is a contradiction.\hfill$\square$
+\[ x := \left( \prod_{p \in X} p \right)^{a} \ \text{and} \ y := \left( \prod_{p \in Y} p \right)^{b} \]while $x, y > a_1$. We see that $P(x) = X$ and $P(y) = Y$. Since $X, Y \in \mathcal{F}$, we see that $x, y \in \mathcal{S}$. Since $x, y > a_1$, this means that $x, y$ appears in the enumeration of the sequence $a_1, a_2, \dots$. However, $\gcd(x, y) = 1$ since $X \cap Y = \varnothing$, which is a contradiction.
 \end{proof}
-\noindent
+
 Consider the minimal members of $\mathcal{F}$, i.e., the elements in $\mathcal{F}$ for which no proper subset of it belongs to $\mathcal{F}$.
 
 \medskip
-\noindent
 The crux of this entire problem lies on the following main claim.
 \begin{claim}[Main Claim]
     If a prime $p$ belongs to a minimal member of $\mathcal{F}$, then $p \le a_1^2$.
@@ -1366,10 +1354,10 @@ The crux of this entire problem lies on the following main claim.
     Take any such prime $p$. Among all minimal member of $\mathcal{F}$ containing $p$, choose one for which the product of its elements is the smallest, call this set $M$. If $M = \{ p \}$, then since $M \cap P(a_1) \not= \varnothing$, we must have $p \mid a_1$ and thus $p \le a_1 \le a_1^2$. Therefore, we may assume that $M \setminus \{ p \} \not= \varnothing$, and set $M' := M \setminus \{ p \}$ with $h := \prod_{q \in M'} q$. Since $M$ is minimal, $M' \notin \mathcal{F}$.
     \begin{itemize}
         \item If $h > a_1$, we see that since $M' \notin \mathcal{F}$, we must have $h \notin \mathcal{S}$. This means that there exists $i$ such that $a_i < h$ and $\gcd(a_i, h) = 1$, i.e., $P(a_i) \cap H = \varnothing$. However, $P(a_i) \cap M \not= \varnothing$ and thus $p \in P(a_i)$. Choose a minimal member $N$ of $\mathcal{F}$ such that $N \subseteq P(a_i)$. As $N, M \in \mathcal{F}$, $N \cap M \not= \varnothing$. However, $N \subseteq P(a_i)$ and $P(a_i) \cap M' = \varnothing$, and so $N \cap M' = \varnothing$. This means that $p \in N$. However, the product of every element in $N$ is at most $a_i < h$, due to $N \subseteq P(a_i)$. This gives us a contradiction of our choice $M$.
-        \item If $h \le a_1$, let $k$ be the smallest positive integer such that $x := h^k > a_1$. By minimality of $k$, we see that $x \le a_1^2$. We see that $P(x) = M' \notin \mathcal{F}$ and so $x \notin \mathcal{S}$. This means that there exists $i$ such that $a_i < x$ and $\gcd(a_i, x) = 1$, i.e., $P(a_i) \cap M' = \varnothing$. Since $P(a_i) \cap M \not= \varnothing$, we know that $p \in P(a_i)$, which means that $p \le a_i < x \le a_1^2$.\hfill$\square$
+        \item If $h \le a_1$, let $k$ be the smallest positive integer such that $x := h^k > a_1$. By minimality of $k$, we see that $x \le a_1^2$. We see that $P(x) = M' \notin \mathcal{F}$ and so $x \notin \mathcal{S}$. This means that there exists $i$ such that $a_i < x$ and $\gcd(a_i, x) = 1$, i.e., $P(a_i) \cap M' = \varnothing$. Since $P(a_i) \cap M \not= \varnothing$, we know that $p \in P(a_i)$, which means that $p \le a_i < x \le a_1^2$.
     \end{itemize}
 \end{proof}
-\noindent
+
 Now, let $\mathcal{P} := \{ p \ \text{is prime and } p \le a_1^2 \}$. By our previous claim, every minimal member of $\mathcal{F}$ is a subset of $\mathcal{P}$, and thus there are only finitely many minimal members. Suppose these are $M_1, M_2, \dots, M_r$. For each $1 \le j \le r$, we define
 \[ d_j := \prod_{p \in M_j} p. \]
 \begin{claim}
@@ -1382,9 +1370,9 @@ Now, let $\mathcal{P} := \{ p \ \text{is prime and } p \le a_1^2 \}$. By our pre
 n \in \mathcal{S} &\iff P(n) \in \mathcal{F} \\ 
 &\iff P(n) \ \text{contain some minimal member } M_j \\ 
 &\iff d_j \mid n \ \text{for some } j.
-\end{align*}\hfill$\square$
+\end{align*}
 \end{proof}
-\noindent
+
 To finish, let $L := \operatorname{lcm}(d_1, \dots, d_r)$. We see that $m \in \mathcal{S} \iff m + L \in \mathcal{S}$ for any $m \ge 1$. This means that membership in $\mathcal{S}$ is periodic modulo $L$. Define $T := |\mathcal{S} \cap [L]|$. Since every interval of $L$ consecutive integers contains exactly $T$ elements of $\mathcal{S}$, and $a_n \in \mathcal{S}$, we see that $a_n + L \in \mathcal{S}$. Furthermore, we see that the sequence $a_n$ is just the increasing enumeration of the elements of $\mathcal{S}$ above $a_1$. As there are precisely $T$ elements of $\mathcal{S}$ lie on $(a_n, a_n + L]$, the $T$-th term after $a_n$ is precisely $a_n + L$, i.e., $a_{n + T} = a_n + L$, for all $n \ge 1$, which is precisely what we wanted.
 \newpage
 \subsubsection{Solution 2}
@@ -1400,7 +1388,7 @@ Consider any multiple of $G$, say $mG$ for some $m \in \mathbb{Z}^+$. For any $i
 
 \medskip
 At step $n$, there exists at least one multiple of $G$ in the interval $(a_n, a_n + G]$. Because $a_{n+1}$ is the smallest $n$-valid integer strictly greater than $a_n$, we must have:
-$$ a_{n+1} \leqslant a_n + G \implies a_{n+1} - a_n \leqslant G $$Thus, the gaps between consecutive terms are bounded by $G$. \hfill$\square$
+$$ a_{n+1} \leqslant a_n + G \implies a_{n+1} - a_n \leqslant G $$Thus, the gaps between consecutive terms are bounded by $G$. 
 \end{proof}
 \begin{claim}
     Let $\mathcal{P}$ denote the set of all primes that divide at least one term in the sequence $(a_n)_{n=1}^\infty$. The set $\mathcal{P}$ is finite.
@@ -1425,7 +1413,7 @@ Because $k \leqslant G$, $k$ is bounded. Since $\mathcal{P}$ is infinite, we can
 The next available multiple of $p$ is $p(k+1) = a_n + p$. Since $p > G^2 \geqslant G$, we have $a_n + p > a_n + G$. However, the interval $(a_n, a_n + G]$ is guaranteed to contain a multiple of $G$, which is valid for all time. Thus, the sequence will inevitably pick the multiple of $G$ (or an even smaller valid number) long before it ever reaches the next multiple of $p$. Consequently, the prime $p$ is entirely redundant for all future terms.
 
 \medskip
-If $p$ is redundant for all $\displaystyle m > n$, and $p$ was redundant for $a_n$ itself (as $k$ was already sufficient), the minimality of $a_n$ is directly contradicted unless $p \leqslant G$. Hence, no such arbitrarily large prime $p$ can exist, and $\mathcal{P}$ must be finite. \hfill$\square$
+If $p$ is redundant for all $\displaystyle m > n$, and $p$ was redundant for $a_n$ itself (as $k$ was already sufficient), the minimality of $a_n$ is directly contradicted unless $p \leqslant G$. Hence, no such arbitrarily large prime $p$ can exist, and $\mathcal{P}$ must be finite. 
 \end{proof}
 \begin{theorem}
     There exist positive integers $T$ and $L$ such that $a_{n+T} = a_n + L$ for every positive integer $n$.
@@ -1450,7 +1438,7 @@ Since the generating set is periodic with period $M$, the sequence of difference
 
 \medskip
 Therefore, for all $n \geqslant N$, we have:
-$$ \boxed{a_{n+T} = a_n + M} $$To ensure this holds for all positive integers $n$ as stipulated, observe that the sequence is strictly determined from the beginning. The aforementioned stabilisation applies globally because the elements of $\mathcal{S}^*$ are those sharing primes with all sequence members, thereby demonstrating that $T$ and $L = M$ satisfy the relation uniformly for all $n\geqslant 1$. \hfill$\square$
+$$ \boxed{a_{n+T} = a_n + M} $$To ensure this holds for all positive integers $n$ as stipulated, observe that the sequence is strictly determined from the beginning. The aforementioned stabilisation applies globally because the elements of $\mathcal{S}^*$ are those sharing primes with all sequence members, thereby demonstrating that $T$ and $L = M$ satisfy the relation uniformly for all $n\geqslant 1$. 
 \end{proof}
 \newpage
 \subsubsection{Solution 3}
@@ -1465,7 +1453,7 @@ Call a prime \textit{small} if it is at most $a_1$, and big otherwise. Let the s
 Now consider the sequence $s,s^2,s^3,\ldots$. There must exist $t$ such that $s^t \in (a_1,a_1s] \subset (a_1,sr)=(a_1,a_i)$. I claim that $s^t$ appears in $(a_i)$. Suppose otherwise; since $s^t>a_1$, there exists $i$ such that $a_p<s^t<a_{p+1}$. Clearly $p<i$, so $\gcd(s,a_i)>1$ for all $i \leq p$. Then $\gcd(s^t,a_i)>1$ for all $i \leq p$ as well, but then by definition $a_{p+1}$ should be at most $s^t$: contradiction.
 
 \medskip
-Thus $s^t$ appears in $(a_i)$, and its index is evidently less than $i$. Therefore we would need $\gcd(s^t,a_j)>1$, but from before we have $\gcd(s,a_j)=1$: contradiction. Hence the claim is proved. \hfill$\square$
+Thus $s^t$ appears in $(a_i)$, and its index is evidently less than $i$. Therefore we would need $\gcd(s^t,a_j)>1$, but from before we have $\gcd(s,a_j)=1$: contradiction. Hence the claim is proved.
 \end{proof}
 \noindent
 Now let $P$ be the product of all the small primes.
@@ -1473,7 +1461,7 @@ Now let $P$ be the product of all the small primes.
     For all $x,y \geq a_1$ with $P \mid x-y$, we have $x \in (a_i) \implies y \in (a_i)$
 \end{claim}
 \begin{proof}
-    If $x \in (a_i)$, then from claim 1 $x$ and $a_i$ share a small prime factor for all $i$. Suppose $y \not \in (a_i)$, so there exists $p$ such that $a_p<y<a_{p+1}$. Because the small prime factors of $x$ and $y$ are the same, $y$ and $a_i$ also share a small prime factor for all $i$, implying $\gcd(y,a_i)>1$ for all $i \leq p$. But then $a_{p+1} \leq y$ by definition, which is a contradiction. Therefore $y \in (a_i)$. \hfill$\square$
+    If $x \in (a_i)$, then from claim 1 $x$ and $a_i$ share a small prime factor for all $i$. Suppose $y \not \in (a_i)$, so there exists $p$ such that $a_p<y<a_{p+1}$. Because the small prime factors of $x$ and $y$ are the same, $y$ and $a_i$ also share a small prime factor for all $i$, implying $\gcd(y,a_i)>1$ for all $i \leq p$. But then $a_{p+1} \leq y$ by definition, which is a contradiction. Therefore $y \in (a_i)$. 
 \end{proof}
 \noindent
 \textcolor{GlacierBlue}{\textbf{Claim 2.3.8}} implies that there exists $T \geq 1$ with $a_{1+T}=a_1+P$, and then it is straightforward to show inductively that $a_{n+T}=a_n+P$ for all $n$, which is our desired result. $\square$
@@ -1506,7 +1494,7 @@ Let $C$ be the product of all primes not exceeding $2a_1$.
 \]there exists some $k$ such that $\gcd(a_i, C)^k$ lies between $a_1$ and $a_i$, hence $\gcd(a_i, C)^k$ belongs to the sequence. But $\gcd(a_i, C)^k$ cannot be $a_i$, and
 \[
 \gcd\left(\gcd(a_i, C)^k, a_j, C\right) = 1,
-\]a contradiction. \hfill$\square$
+\]a contradiction. 
 \end{proof}
 \noindent
 Let
@@ -1540,7 +1528,7 @@ Otherwise, we have $x<a_1$. In that case, since $a_n>a_1^2$, there must be some 
 By definition, $a_{n+1}$ must be divisible by some element of $A_n$. If $x\mid a_{n+1}$ for some $x\in A_n\cap [\![1,a_n]\!]$, then
 $A_{n+1}=A_n$ by our result above.
 Otherwise, suppose there is some $y\in A_n$ with $y>a_n$ such that $y\mid a_{n+1}$. Since each multiple of $a_1$ appears in the sequence, we must have
-\[a_{n+1}\le a_n+a_1\le 2a_n<2y,\]so that $a_{n+1}=y$. Then, since $p(\{a_{n+1}\})\subseteq p(A_n)$, we have $p(A_{n+1})\subseteq p(A_n)$. This concludes the proof of the lemma. \hfill$\square$
+\[a_{n+1}\le a_n+a_1\le 2a_n<2y,\]so that $a_{n+1}=y$. Then, since $p(\{a_{n+1}\})\subseteq p(A_n)$, we have $p(A_{n+1})\subseteq p(A_n)$. This concludes the proof of the lemma. 
 \end{proof}
 \noindent
 The lemma shows that the set $P$ of primes dividing some element of $A_n$ for some $n$ is finite. Let
@@ -1550,7 +1538,7 @@ The idea to finish is to consider the sequence modulo $M$ : let $0\le b_1<b_2<\l
 \[a_{n+1}=\begin{cases}
         a_n+b_{i+1}-b_i \quad \text{if $a_n\equiv b_i\pmod M$ with $1\le i<k$}\\
         a_n+M-b_k+b_1\quad \text{if $a_n\equiv b_k\pmod M$}.
-    \end{cases}\]We can thus conclude by taking $T=k$ and $L=M$. \hfill$\square$
+    \end{cases}\]We can thus conclude by taking $T=k$ and $L=M$. 
 \newpage
 \subsubsection{Solution 6}
 Let $$S = \{a_i \mid i \in \mathbb{N}\}.$$
@@ -1560,20 +1548,20 @@ Let $s_x$ be the product of all prime not exceeding $$\max_{i,j \leqslant x} b_{
     Let $n \in \mathbb{N}$. If $x \in \mathbb{N}$ satisfy $a_1 \leqslant x \leqslant a_n$ and $\gcd(x,a_i) >1$ for $i=1,2,\dots,n$, then $x \in S$.
 \end{claim}
 \begin{proof}
-    Suppose that $x \not\in S$, this mean there exist $i$ such that $a_{i-1} < x < a_i$. But $\gcd(x,a_k) >1$ for $k=1,2,\dots,i-1$. Hence, $a_i$ is not the smallest positive integer greater than $a_{i-1}$ such that $\text{gcd}(a_{i}, a_k)>1$ for every $k=1,2,\ldots, i-1$. a contradiction.\hfill$\square$
+    Suppose that $x \not\in S$, this mean there exist $i$ such that $a_{i-1} < x < a_i$. But $\gcd(x,a_k) >1$ for $k=1,2,\dots,i-1$. Hence, $a_i$ is not the smallest positive integer greater than $a_{i-1}$ such that $\text{gcd}(a_{i}, a_k)>1$ for every $k=1,2,\ldots, i-1$. a contradiction.
 \end{proof}
 \begin{claim}
     Let $n<x$ be a positive integers. If $\gcd(a_n,s_x) =d$, then any multiple of $d$ between $a_1,a_x$ is an element of $S$.
 \end{claim}
 \begin{proof}
-    Suppose that for some $i \leqslant x$, we have $\gcd(a_i,d) =1$, then $a_i$ and $d$ does not share any prime factor. But then $a_n$ contain all prime factor that $d$ has, so $\gcd(a_n,a_i)$ must only contain a prime factor $P$ that is coprime to $d$. But we know that $\text{rad}(P) \mid s_x$, so we get a contradiction. This mean $\gcd(d,a_i) >1$ for all $i \leqslant x$. Thus, by the claim above, we get this claim.\hfill$\square$
+    Suppose that for some $i \leqslant x$, we have $\gcd(a_i,d) =1$, then $a_i$ and $d$ does not share any prime factor. But then $a_n$ contain all prime factor that $d$ has, so $\gcd(a_n,a_i)$ must only contain a prime factor $P$ that is coprime to $d$. But we know that $\text{rad}(P) \mid s_x$, so we get a contradiction. This mean $\gcd(d,a_i) >1$ for all $i \leqslant x$. Thus, by the claim above, we get this claim.
 \end{proof}
 \begin{claim}
     $b_{i,j} \leqslant a_1$.
 \end{claim}
 \begin{proof}
     Let $n$ be the smallest integer such that for some $m<n$, we have $b_{m,n} = P > a_1$
-Note that by minimality of $n$,$P \nmid s_{n-1}$. Let $\gcd(a_i,s_{n-1}) = q_i$. Since $b_{m,n} =P$, we get that $q_m,a_n$ are coprime and so does $q_m,a_n$. Note that if $a_1$ is of the form $q_m^k$, then $\gcd(a_1,a_n) =1$, a contradiction. Hence suppose that $q_m^{k} > a_1 > q_m^{k-1}$. Note that$$P \mid \frac{a_m}{q_m} \implies P \leqslant \frac{a_m}{q_m} \implies q_m^{k-1} < a_1 < P \leqslant \frac{a_m}{q_m}$$Thus, we get that $a_1< q_m^k = q_m \cdot q_m^{k-1} < q_m \cdot \frac{a_m}{q_m} = a_m$. Thus, $q_m^k \in S$. However, $\gcd(a_n,q_m^k) = 1$, a contradiction.\hfill$\square$
+Note that by minimality of $n$,$P \nmid s_{n-1}$. Let $\gcd(a_i,s_{n-1}) = q_i$. Since $b_{m,n} =P$, we get that $q_m,a_n$ are coprime and so does $q_m,a_n$. Note that if $a_1$ is of the form $q_m^k$, then $\gcd(a_1,a_n) =1$, a contradiction. Hence suppose that $q_m^{k} > a_1 > q_m^{k-1}$. Note that$$P \mid \frac{a_m}{q_m} \implies P \leqslant \frac{a_m}{q_m} \implies q_m^{k-1} < a_1 < P \leqslant \frac{a_m}{q_m}$$Thus, we get that $a_1< q_m^k = q_m \cdot q_m^{k-1} < q_m \cdot \frac{a_m}{q_m} = a_m$. Thus, $q_m^k \in S$. However, $\gcd(a_n,q_m^k) = 1$, a contradiction.
 \end{proof}
 \noindent
 Let $Q$ be the product of primes not exceeding $a_1$. Let $R = \{x \mid x \in S, x < Q+a_1\}$.
@@ -1581,7 +1569,7 @@ Let $Q$ be the product of primes not exceeding $a_1$. Let $R = \{x \mid x \in S,
     $k \in S \iff Q \mid k-i$ for some $i \in R$.
 \end{claim}
 \begin{proof}
-    Suppose $k \in S$, then by claim $2$, all multiple of $\gcd(k,Q)$ which is at least $a_1$ is an element of $S$. This mean $k \pm Q \in S$. This clearly finish the claim.\hfill$\square$
+    Suppose $k \in S$, then by claim $2$, all multiple of $\gcd(k,Q)$ which is at least $a_1$ is an element of $S$. This mean $k \pm Q \in S$. This clearly finish the claim.
 \end{proof}
 \noindent
 Hence, we get that $a_{n+|R|} = a_{n} + Q$ as desired.
