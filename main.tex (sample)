@@ -1,6 +1,6 @@
-% =============================================================================
-% Compiled by XeLaTeX/LuaLaTex. This is a sample main.tex for testing and running.
-% ================================================================================
+% ==================================================================================================
+% Please use XeLaTeX/LuaLaTex to compile. This is a sample main.tex for you to testing and running.
+% ==================================================================================================
 
 \documentclass[11pt]{article}
 \usepackage{jesse} 
