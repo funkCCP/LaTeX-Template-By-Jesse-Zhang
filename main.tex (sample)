@@ -78,7 +78,7 @@ Watch out for division by zero!
 
 \newpage
 \section{Another example}
-\subsection{A Formula（來個二壁公式）}
+\subsection{A Formula（隨便來個公式吧）}
 \begin{formula}
 We have（我們有） $$F=ma.$$ Or we can write （或者我們可以寫成）
     $$\sum_{i=1}^{n}\Vec{F}=m\Vec{a}.$$
